@@ -2,7 +2,7 @@ import img2 from "../Assets/MobileLogos.png";
 import img3 from "../Assets/mobileLogo1.png";
 import img4 from "../Assets/mobileLogo2.png";
 import img5 from "../Assets/mobileLogo3.png";
-import Hero from "./Hero.jsx"
+import Hero from "../Components/Hero.jsx"
 import Testimonial from "../Components/Testimonial";
 import { cardData1, cardData3 } from "../Data/data.js";
 

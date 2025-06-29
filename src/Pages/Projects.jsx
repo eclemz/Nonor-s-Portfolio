@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import Cards from "../Components/Cards";
-import { cardData } from "../Data/data.js";
+import { cardData } from "../Data/Data";
 import SortButton from "../Components/SortButton";
 import { useNavigate } from "react-router-dom";
 import CategoryBtn from "../Components/CategoryBtn";

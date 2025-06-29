@@ -1,4 +1,4 @@
-import TextSwitcher from "../Components/TextSwitcher";
+import TextSwitcher from "./TextSwitcher";
 
 function Hero({ showButton = true }) {
   return (

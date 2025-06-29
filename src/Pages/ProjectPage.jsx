@@ -1,8 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { cardData2 } from "../Data/data.js";
+import { cardData2 } from "../Data/Data";
 import { IoIosArrowBack } from "react-icons/io";
-import { Fragment, useRef } from "react";
-import { div } from "framer-motion/client";
+import { useRef } from "react";
 
 function ProjectPage() {
   const params = useParams();

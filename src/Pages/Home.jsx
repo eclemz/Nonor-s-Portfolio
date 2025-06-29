@@ -1,6 +1,6 @@
 import React from "react";
 import { cardData1 } from "../Data/data.js";
-import Hero from "./Hero";
+import Hero from "../Components/Hero.jsx";
 import Projects from "./Projects";
 import Testimonial from "../Components/Testimonial.jsx";
 
