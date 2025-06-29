@@ -4,7 +4,7 @@ import img4 from "../Assets/mobileLogo2.png";
 import img5 from "../Assets/mobileLogo3.png";
 import Hero from "../Components/Hero.jsx"
 import Testimonial from "../Components/Testimonial";
-import { cardData1, cardData3 } from "../Data/data.js";
+import { cardData1, cardData3 } from "../Data/Data.js";
 
 function AboutUs({ data = cardData3 }) {
   return (
