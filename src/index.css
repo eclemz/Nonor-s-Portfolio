@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,39 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+/* Custom styles for circle dots */
+.slick-dots li {
+  right: 10px;
+  align-self: center;
+  display: flex
+}
+.slick-dots{
+  justify-content: center;
+}
+
+.custom-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: black; /* gray for inactive */
+  border: 1px solid #fff; /* white border for contrast */
+  transition: background 0.3s;
+
+}
+
+/* Active dot: parent li gets .slick-active */
+.slick-dots li.slick-active .custom-dot {
+  background: #fff; /* white for active */
+}
+
+footer li {
+  display: inline-block;
+  list-style: none;
+}
+.sortButton li {
+  /* display: inline-block; */
+  list-style: none;
 }
