@@ -8,7 +8,7 @@ import Footer from "./Components/Footer";
 import Hamburger from "./Components/Hamburger";
 import AboutUs from "./Pages/AboutUs";
 import ProjectPage from "./Pages/ProjectPage";
-import { cardData2 } from "./Data/data";
+import { cardData2 } from "./Data/Data.js";
 
 
 function App() {
