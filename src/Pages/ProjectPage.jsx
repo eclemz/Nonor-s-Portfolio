@@ -35,7 +35,7 @@ function ProjectPage() {
 
   return (
     <main className="flex flex-col items-start py-[3rem] lg:px-14 md:px-5 px-4 md:gap-10 gap-5 bg-white dark:bg-[#100108] w-full">
-      <nav className="lg:hidden md:flex pb-3 pt-24 px-0 justify-center items-center gap-3 bg-inherit text-black dark:text-[#FCFCFC]">
+      <nav className="lg:hidden md:flex pb-3 px-0 justify-center items-center gap-3 bg-inherit text-black dark:text-[#FCFCFC]">
         <Link
           to="/projects"
           className=" visited:dark:text-[#FCFCFC] visited:text-[#FCFCFC] hover:underline no-underline flex gap-1 py-3 justify-center items-center"
@@ -57,47 +57,51 @@ function ProjectPage() {
           </span>
         </a>
       </div>
-    <div className="md:hidden block">
-      {[1, 2, 3, 4, 5].map((n, i) => {
-        // Find the section object that has the keys for this n
-        const section = sections.find(s => s[`title${n}`] || s[`desc${n}`] || s[`image${n}`]);
-        if (!section) return null;
+      <div className="md:hidden block">
+        {[1, 2, 3, 4, 5].map((n, i) => {
+          // Find the section object that has the keys for this n
+          const section = sections.find(
+            (s) => s[`title${n}`] || s[`desc${n}`] || s[`image${n}`]
+          );
+          if (!section) return null;
 
-        const image = section[`image${n}`];
-        const time = section[`time${n}`];
-        const title = section[`title${n}`];
-        const desc = section[`desc${n}`];
+          const image = section[`image${n}`];
+          const time = section[`time${n}`];
+          const title = section[`title${n}`];
+          const desc = section[`desc${n}`];
 
-        // For the fifth card, you may only have title5/desc5 and no image/time.
-        return (
-          <article key={n} className="block w-full">
-            <div className="flex flex-col items-start self-stretch py-4 gap-3">
-              {image && <img src={image} alt="" className="w-full rounded-lg" />}
-              {time && (
-                <span className="font-inter text-[0.625rem] font-[400] text-[#FCFCFC] mt-1">
-                  {time}
-                </span>
-              )}
-              {title && (
-                <h3 className="font-inter text-[#9D979A] text-[1.125rem] font-[700] mt-3">
-                  {title}
-                </h3>
-              )}
-              {desc && (
-                <span className="font-inter text-[#FCFCFC] text-[1rem] font-[400] mt-1">
-                  {desc}
-                </span>
-              )}
-            </div>
-          </article>
-        );
-      })}
+          // For the fifth card, you may only have title5/desc5 and no image/time.
+          return (
+            <article key={n} className="block w-full">
+              <div className="flex flex-col items-start self-stretch py-4 gap-3">
+                {image && (
+                  <img src={image} alt="" className="w-full rounded-lg" />
+                )}
+                {time && (
+                  <span className="font-inter text-[0.625rem] font-[400] text-[#FCFCFC] mt-1">
+                    {time}
+                  </span>
+                )}
+                {title && (
+                  <h3 className="font-inter text-[#9D979A] text-[1.125rem] font-[700] mt-3">
+                    {title}
+                  </h3>
+                )}
+                {desc && (
+                  <span className="font-inter text-black dark:text-[#FCFCFC] text-[1rem] font-[400] mt-1">
+                    {desc}
+                  </span>
+                )}
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       <div className="hidden md:flex lg:pl-32 flex-row gap-7  bg-white dark:bg-[#100108] ">
         {/* Floating Project Name and Link - only on lg and up */}
-        <div className="hidden lg:flex w-full flex-col gap-2 fixed left-0 py-7 px-14 top-36 z-30 items-start bg-inherit">
-          <span className="font-inter text-[2.5rem] lg:text-10 font-bold text-black dark:text-[#FCFCFC]">
+        <div className="hidden lg:flex w-full flex-col gap-2 fixed left-0 py-2 px-14 top-32 z-30 items-start bg-inherit">
+          <span className="font-inter text-[2.5rem] lg:text-2xl font-bold text-black dark:text-[#FCFCFC]">
             {displayName}
           </span>
           <a
@@ -109,15 +113,14 @@ function ProjectPage() {
         </div>
 
         {/* Side Scroll Buttons */}
-        <aside className="md:hidden lg:flex flex-col fixed z-30 gap-2 px-8 py-3 pitems-start left-6 top-80">
+        <aside className="md:hidden lg:flex flex-col fixed z-30 gap-2 px-8 py-3 pitems-start left-6 top-60">
           <h3 className="text-2xl font-inter font-semibold">Content</h3>
           {sections.map((section, idx) => (
             <button
               key={idx}
-              className="text-black gap-2 dark:text-[#FCFCFC] py-2 rounded justify-center hover:bg-[#2e1742] transition-colors text-left"
+              className="text-black gap-2 dark:text-[#FCFCFC] py-2 rounded justify-center transition-colors text-left"
               onClick={() => handleScroll(idx)}
             >
-              {/* Use the right title key for your data */}
               {section.title ||
                 section.title1 ||
                 section.title2 ||
@@ -129,7 +132,7 @@ function ProjectPage() {
         </aside>
 
         {/* For Desktop */}
-        <div className="flex flex-col lg:pt-72 bg-white dark:bg-[#100108]">
+        <div className="flex flex-col lg:pt-48 bg-white dark:bg-[#100108]">
           {/* First Card - Column, full stretch */}
           {sections[0] && (
             <article
@@ -151,43 +154,43 @@ function ProjectPage() {
           )}
 
           {/* Second Card - Grid, 2 columns, swapped order */}
-          {sections[1] && sections[2] && sections[3] && sections[4] &&(
+          {sections[1] && sections[2] && sections[3] && sections[4] && (
             <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-              {/* First column: image then title/desc */}
-              <article
-                ref={(el) => (sectionRefs.current[1] = el)}
-                className="flex flex-col gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg"
-              >
-                <img
-                  src={sections[1].image2}
-                  alt=""
-                  className="w-full rounded-lg"
-                />
-                <h3 className="font-inter text-[#9D979A] text-xl font-bold">
-                  {sections[1].title2}
-                </h3>
-                <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
-                  {sections[1].desc2}
-                </span>
-              </article>
-              {/* Second column: title/desc then image */}
-              <article
-                ref={(el) => (sectionRefs.current[2] = el)}
-                className="flex flex-col gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg"
-              >
-                <h3 className="font-inter text-[#9D979A] text-xl font-bold">
-                  {sections[2].title3}
-                </h3>
-                <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
-                  {sections[2].desc3}
-                </span>
-                <img
-                  src={sections[2].image3}
-                  alt=""
-                  className="w-full rounded-lg"
-                />
-              </article>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                {/* First column: image then title/desc */}
+                <article
+                  ref={(el) => (sectionRefs.current[1] = el)}
+                  className="flex flex-col gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg"
+                >
+                  <img
+                    src={sections[1].image2}
+                    alt=""
+                    className="w-full rounded-lg"
+                  />
+                  <h3 className="font-inter text-[#9D979A] text-xl font-bold">
+                    {sections[1].title2}
+                  </h3>
+                  <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
+                    {sections[1].desc2}
+                  </span>
+                </article>
+                {/* Second column: title/desc then image */}
+                <article
+                  ref={(el) => (sectionRefs.current[2] = el)}
+                  className="flex flex-col gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg"
+                >
+                  <h3 className="font-inter text-[#9D979A] text-xl font-bold">
+                    {sections[2].title3}
+                  </h3>
+                  <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
+                    {sections[2].desc3}
+                  </span>
+                  <img
+                    src={sections[2].image3}
+                    alt=""
+                    className="w-full rounded-lg"
+                  />
+                </article>
               </div>
               {/* Third Card for both tablet and desktop */}
 
@@ -195,44 +198,47 @@ function ProjectPage() {
                 ref={(el) => (sectionRefs.current[3] = el)}
                 className="flex lg:flex-col lg:w-full flex-row items-start self-stretch gap-14 bg-white dark:bg-[#100108] p-4 rounded-lg"
               >
-                  <img
+                <img
                   src={sections[3].image4}
                   alt=""
                   className="md:flex lg:self-stretch self-center rounded-lg md:w-[346px] lg:w-auto"
                 />
-                
+
                 <div className="flex flex-col lg:flex-row items-start py-5 gap-5 flex-1 min-w-0">
                   <div>
-                <h3 className="font-inter text-[#9D979A] text-xl font-bold">
-                  {sections[3].title4}
-                </h3>
-                <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal break-words whitespace-normal">
-                  {sections[3].desc4}
-                </span>
-                </div>
-                <div className="md:hidden lg:block">
-                <h3 className="font-inter text-[#9D979A] text-xl font-bold">
-                    {sections[4].title5}
-                  </h3>
-                  <span className="font-inter text-black dark:text-[#FCFCFC] text-base font-normal">
-                    {sections[4].desc5}
-                  </span>
+                    <h3 className="font-inter text-[#9D979A] text-xl font-bold">
+                      {sections[3].title4}
+                    </h3>
+                    <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal break-words whitespace-normal">
+                      {sections[3].desc4}
+                    </span>
+                  </div>
+                  <div className="md:hidden lg:block">
+                    <h3 className="font-inter text-[#9D979A] text-xl font-bold">
+                      {sections[4].title5}
+                    </h3>
+                    <span className="font-inter text-black dark:text-[#FCFCFC] text-base font-normal">
+                      {sections[4].desc5}
+                    </span>
                   </div>
                 </div>
               </article>
 
-              <div className="lg:hidden flex flex-col items-start flex-1 gap-5 py-5 ">
+              {sections[4] && (
+                <article
+                  ref={(el) => (sectionRefs.current[4] = el)}
+                  className="lg:hidden flex flex-col w-full gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg"
+                >
                   <h3 className="font-inter text-[#9D979A] text-xl font-bold">
                     {sections[4].title5}
                   </h3>
                   <span className="font-inter text-black dark:text-[#FCFCFC] text-base font-normal">
                     {sections[4].desc5}
                   </span>
-                </div>
-              </>
-            
+                </article>
+              )}
+            </>
           )}
-
         </div>
       </div>
     </main>

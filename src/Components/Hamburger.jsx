@@ -18,6 +18,17 @@ function Hamburger({ open, onClose }) {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open, onClose]);
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open])
+
   if (!open) return null;
 
   // Close menu on link click
@@ -29,7 +40,7 @@ function Hamburger({ open, onClose }) {
     <>
       {/* Overlay */}
       <div
-        className=" fixed right-[0] top-[0] bg-[rgba(252, 252, 252, 0.80)] dark:bg-[rgba(16,1,8,0.8)] h-full w-full  bg-opacity-20 z-40"
+        className="fixed right-[0] top-[0] bg-[rgba(252, 252, 252, 0.80)] dark:bg-[rgba(16,1,8,0.8)] h-full w-full  bg-opacity-20 z-40"
         onClick={onClose}
         aria-label="Close menu"
       />
@@ -42,30 +53,34 @@ function Hamburger({ open, onClose }) {
           transform: open ? "translateY(0%)" : "translateY(-100%)",
         }}
       >
-        <nav className=' flex flex-col items-start gap-[2rem] min-[768px]:p-[2rem] py-[2rem] px-[1rem]  text-[#100108] bg-gray-200 dark:bg-[#13070C]'>
-          <div className='flex py-[0.75rem] px-[0.5rem] justify-center gap-[0.5rem] self-stretch'>
-            <Link to="/projects" onClick={handleLinkClick}>
+        <nav className=' flex flex-col w-full items-start gap-[2rem] md:p-[2rem] py-[2rem] px-[1rem]  text-[#100108] bg-gray-200 dark:bg-[#13070C]'>
+
+          <Link to="/projects" onClick={handleLinkClick} className="w-full">
+          <div className='flex py-3 px-2 justify-center gap-2 self-stretch'>    
               <span className='text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] font-[700] leading-[1.5rem]'>Projects</span>
-            </Link>
           </div>
-          <div className='flex py-[0.75rem] px-[0.5rem] justify-center gap-[0.5rem] self-stretch'>
-            <Link to="/about" onClick={handleLinkClick}>
-              <span className='text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] font-[700] leading-[1.5rem]'>About</span>
-            </Link>
+          </Link>
+
+
+          <Link to="/about" onClick={handleLinkClick} className="w-full">
+          <div className='flex py-3  px-2 self-stretch justify-center gap-2 '>
+              <span className='text-[#100108] dark:text-[#FCFCFC] justify-center font-inter text-[1.125rem] font-[700] leading-[1.5rem]'>About</span>
           </div>
-          <div className='flex py-[0.75rem] px-[1.5rem] justify-center gap-[0.5rem] self-stretch'>
+          </Link>
+
+          <div className='flex py-3 px-6 justify-center gap-2 self-stretch'>
             <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" onClick={handleLinkClick}>
-              <span className='text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] font-[700] leading-[1.5rem]'>
+              <span className='text-[#100108] dark:text-[#FCFCFC] font-inter text-lg font-[700] leading-[1.5rem]'>
                 LinkedIn
               </span>
-              <MdArrowOutward className="h-[1.25rem] w-[1.25rem] text-[#100108] dark:text-[#FCFCFC]" />
+              <MdArrowOutward className="h-5 w-5 text-[#100108] dark:text-[#FCFCFC]" />
             </a>
           </div>
-          <div className="flex flex-col py-[1rem] px-[1.5rem] justify-center items-center gap-[0.5rem] self-stretch">
+          <div className="flex flex-col py-4 px-6 justify-center items-center gap-2 self-stretch">
           <ThemeToggle />
           </div>
-          <button className="flex justify-center items-center gap-[0.25rem] py-[0.75rem] px-[1rem] self-stretch rounded-[0.5rem] bg-[#EC157D] ">
-            <span className="text-[#FFFFFF] font-['Helvetica Neue'] text-[0.75rem]  min-[768px]:text-[1rem] font-[500]">
+          <button className="flex justify-center items-center gap-1 py-3 px-[1rem] self-stretch rounded-lg bg-[#EC157D] ">
+            <span className="text-[#FFFFFF] font-['Helvetica Neue'] text-3  md:text-base font-[500]">
                 Get-in-touch
             </span>
           </button>

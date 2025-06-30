@@ -24,7 +24,7 @@ function App() {
       <Hamburger open={menuOpen} onClose={() => setMenuOpen(false)}/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/hero" element={<Hero />} />
+        {/* <Route path="/hero" element={<Hero />} /> */}
         <Route path="/projects" element={<Projects />} />
         <Route path="/project/:projectName" element={<ProjectPage data={cardData2} />} />
         <Route path="/about" element={<AboutUs />} />
