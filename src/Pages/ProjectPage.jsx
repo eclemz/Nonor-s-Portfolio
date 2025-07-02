@@ -34,8 +34,8 @@ function ProjectPage() {
   };
 
   return (
-    <main className="flex flex-col items-start py-[3rem] lg:px-14 md:px-5 px-4 md:gap-10 gap-5 bg-white dark:bg-[#100108] w-full">
-      <nav className="lg:hidden md:flex pb-3 px-0 justify-center items-center gap-3 bg-inherit text-black dark:text-[#FCFCFC]">
+    <main className="flex flex-col items-start py-12 lg:px-14 md:px-8 px-4 md:gap-10 gap-5 bg-white dark:bg-[#100108] w-full">
+      <nav className="lg:hidden md:flex md:pt-28 pt-16 justify-center items-center gap-3 bg-inherit text-black dark:text-[#FCFCFC]">
         <Link
           to="/projects"
           className=" visited:dark:text-[#FCFCFC] visited:text-[#FCFCFC] hover:underline no-underline flex gap-1 py-3 justify-center items-center"
@@ -70,7 +70,6 @@ function ProjectPage() {
           const title = section[`title${n}`];
           const desc = section[`desc${n}`];
 
-          // For the fifth card, you may only have title5/desc5 and no image/time.
           return (
             <article key={n} className="block w-full">
               <div className="flex flex-col items-start self-stretch py-4 gap-3">
@@ -98,9 +97,9 @@ function ProjectPage() {
         })}
       </div>
 
-      <div className="hidden md:flex lg:pl-32 flex-row gap-7  bg-white dark:bg-[#100108] ">
+      <div className="hidden md:flex lg:pl-32 flex-row gap-7 bg-white dark:bg-[#100108] ">
         {/* Floating Project Name and Link - only on lg and up */}
-        <div className="hidden lg:flex w-full flex-col gap-2 fixed left-0 py-2 px-14 top-32 z-30 items-start bg-inherit">
+        <div className="hidden lg:flex w-full flex-col gap-2 fixed left-0 py-3 px-14 top-[5.8125rem] z-30 items-start bg-inherit">
           <span className="font-inter text-[2.5rem] lg:text-2xl font-bold text-black dark:text-[#FCFCFC]">
             {displayName}
           </span>
@@ -113,7 +112,7 @@ function ProjectPage() {
         </div>
 
         {/* Side Scroll Buttons */}
-        <aside className="md:hidden lg:flex flex-col fixed z-30 gap-2 px-8 py-3 pitems-start left-6 top-60">
+        <aside className="md:hidden lg:flex flex-col fixed z-30 gap-2 px-8 py-3 pitems-start left-6 top-48">
           <h3 className="text-2xl font-inter font-semibold">Content</h3>
           {sections.map((section, idx) => (
             <button
@@ -132,12 +131,12 @@ function ProjectPage() {
         </aside>
 
         {/* For Desktop */}
-        <div className="flex flex-col lg:pt-48 bg-white dark:bg-[#100108]">
+        <div className="flex flex-col lg:pt-[9.5rem] bg-white dark:bg-[#100108]">
           {/* First Card - Column, full stretch */}
           {sections[0] && (
             <article
               ref={(el) => (sectionRefs.current[0] = el)}
-              className="flex flex-col w-full gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg"
+              className="flex flex-col w-full gap-4 bg-white dark:bg-[#100108] rounded-lg"
             >
               <img
                 src={sections[0].image1}

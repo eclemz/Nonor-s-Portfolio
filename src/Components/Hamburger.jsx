@@ -31,7 +31,6 @@ function Hamburger({ open, onClose }) {
 
   if (!open) return null;
 
-  // Close menu on link click
   const handleLinkClick = () => {
     if (onClose) onClose();
   };
@@ -40,7 +39,7 @@ function Hamburger({ open, onClose }) {
     <>
       {/* Overlay */}
       <div
-        className="fixed right-[0] top-[0] bg-[rgba(252, 252, 252, 0.80)] dark:bg-[rgba(16,1,8,0.8)] h-full w-full  bg-opacity-20 z-40"
+        className="fixed right-[0] top-[0] bg-white/60 dark:bg-[rgba(16,1,8,0.8)] h-full w-full z-40"
         onClick={onClose}
         aria-label="Close menu"
       />
@@ -56,20 +55,20 @@ function Hamburger({ open, onClose }) {
         <nav className=' flex flex-col w-full items-start gap-[2rem] md:p-[2rem] py-[2rem] px-[1rem]  text-[#100108] bg-gray-200 dark:bg-[#13070C]'>
 
           <Link to="/projects" onClick={handleLinkClick} className="w-full">
-          <div className='flex py-3 px-2 justify-center gap-2 self-stretch'>    
+          <div className='flex py-3 px-40 gap-2 self-stretch'>    
               <span className='text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] font-[700] leading-[1.5rem]'>Projects</span>
           </div>
           </Link>
 
 
           <Link to="/about" onClick={handleLinkClick} className="w-full">
-          <div className='flex py-3  px-2 self-stretch justify-center gap-2 '>
-              <span className='text-[#100108] dark:text-[#FCFCFC] justify-center font-inter text-[1.125rem] font-[700] leading-[1.5rem]'>About</span>
+          <div className='flex py-3 px-40  gap-2 self-stretch'>
+              <span className='text-[#100108] dark:text-[#FCFCFC] font-inter text-lg font-[700] leading-[1.5rem]'>About</span>
           </div>
           </Link>
 
-          <div className='flex py-3 px-6 justify-center gap-2 self-stretch'>
-            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" onClick={handleLinkClick}>
+          <div className='flex py-3 px-40 gap-2  self-stretch'>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="flex flex-row gap-2" onClick={handleLinkClick}>
               <span className='text-[#100108] dark:text-[#FCFCFC] font-inter text-lg font-[700] leading-[1.5rem]'>
                 LinkedIn
               </span>

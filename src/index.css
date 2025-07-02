@@ -31,15 +31,17 @@ code {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: black; /* gray for inactive */
-  border: 1px solid #fff; /* white border for contrast */
+  /* background: black; */
   transition: background 0.3s;
 
 }
 
 /* Active dot: parent li gets .slick-active */
 .slick-dots li.slick-active .custom-dot {
-  background: #fff; /* white for active */
+  background: black; 
+}
+.dark .slick-dots li.slick-active .custom-dot {
+  background: white; 
 }
 
 footer li {

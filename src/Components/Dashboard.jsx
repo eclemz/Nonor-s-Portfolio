@@ -7,7 +7,7 @@ import ThemeToggle from "./ThemeToggle";
 
 function Dashboard({ onHamburgerClick }) {
   return (
-    <section className="dashboard w-full flex flex-col lg:pt-0 pb-5 md:pt-12 pt-8 px-4 md:px-8 lg:px-14 lg:py-0 items-start shrink-0 bg-[#FCFCFC] dark:bg-[#100108] fixed top-0 left-0 z-40">
+    <section className="dashboard w-full shadow-md dark:shadow-gray-800 flex flex-col lg:pt-0 md:pt-12 px-4 md:px-8 lg:px-14 lg:py-0 items-start shrink-0 bg-[#FCFCFC] dark:bg-[#100108] fixed top-0 left-0 z-40">
 
       <div className="md:hidden flex py-5 justify-between items-center self-stretch">
         <div className="flex justify-center items-center gap-2">
@@ -42,7 +42,7 @@ function Dashboard({ onHamburgerClick }) {
       </div>
 
 
-      <div className="hidden w-full  md:flex lg:py-[1.25rem] justify-between items-center lg:self-stretch">
+      <div className="hidden w-full  md:flex  justify-between items-center lg:self-stretch">
         <div className="flex items-center gap-[0.5rem]">
           <Link to="/">
             <img

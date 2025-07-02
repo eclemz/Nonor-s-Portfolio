@@ -2,16 +2,16 @@ import img2 from "../Assets/MobileLogos.png";
 import img3 from "../Assets/mobileLogo1.png";
 import img4 from "../Assets/mobileLogo2.png";
 import img5 from "../Assets/mobileLogo3.png";
-import Hero from "../Components/Hero.jsx"
+// import Hero from "../Components/Hero.jsx"
 import Testimonial from "../Components/Testimonial";
 import { cardData1, cardData3 } from "../Data/Data.js";
 
 function AboutUs({ data = cardData3 }) {
   return (
     <>
-      <div className="flex w-full flex-col items-start gap-10 pt-44 pb-14 lg:px-0 md:px-8 px-4 bg-[#FCFCFC] dark:bg-[#100108]">
+      <div className="flex w-full flex-col items-start gap-10 pt-36 pb-14 lg:px-0 md:px-8 px-4 bg-[#FCFCFC] dark:bg-[#100108]">
         <div className="hidden lg:block">
-        <Hero showButton = {false}/>
+        {/* <Hero showButton = {false}/> */}
         <h1 className="lg:flex justify-center items-center self-stretch text-3xl font-bold font-inter px-14 ">
             About
         </h1>

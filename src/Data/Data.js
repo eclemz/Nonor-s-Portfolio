@@ -2,7 +2,7 @@ import { title } from "framer-motion/client";
 import img1 from "../Assets/COL-23.png";
 import img2 from "../Assets/Creatneste.png";
 import img3 from "../Assets/E&P.png";
-import img4 from "../Assets/project4.svg";
+import img4 from "../Assets/nima.png";
 import img5 from "../Assets/testimonial.png";
 import img6 from "../Assets/mine.png";
 

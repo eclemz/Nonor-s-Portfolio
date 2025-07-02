@@ -33,7 +33,7 @@ function Projects({ showSection = false }) {
   const phoneCards = filteredData.slice(0, 3);
   const tabletFirst = filteredData.slice(0, 1);
   const tabletSecond = filteredData.slice(1, 3);
-
+  const lgFirst = filteredData.slice(0, 3);
   const navigate = useNavigate();
 
   const handleCardClick = (card) => {
@@ -42,10 +42,10 @@ function Projects({ showSection = false }) {
   };
 
   return (
-    <main className="flex flex-col w-full px-[1rem] md:px-[2rem] lg:px-0 pb-14 lg:pt-0 md:pt-0 pt-0 justify-center items-center gap-5 bg-[#FCFCFC] dark:bg-[#100108]">
+    <main className="flex flex-col w-full px-4 md:px-8 py-14 md:py-0 lg:py-0 lg:px-0 pb-14 lg:pt-0 md:pt-0 pt-0 justify-center items-center gap-5 bg-[#FCFCFC] dark:bg-[#100108]">
     {showSection && (
-      <section className="projectTitle lg:hidden flex md:pt-0 justify-between items-center self-stretch lg:py-5 lg:px-14">
-        <span className="font-inter text-[1.5rem] font-[700] text-[#100108] dark:text-[#FCFCFC]">
+      <section className="projectTitle flex md:pt-0 justify-between items-center self-stretch lg:py-5 lg:px-14">
+        <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
           Projects
         </span>
         <SortButton options={sortOptions} value={sortBy} onChange={setSortBy} />
@@ -54,13 +54,12 @@ function Projects({ showSection = false }) {
     
       {!showSection && (
         <>
-        <section className="projectTitle lg:hidden flex md:pt-40 pt-36 justify-between items-center self-stretch lg:py-5 lg:px-14">
-        <span className="font-inter text-[1.5rem] font-[700] text-[#100108] dark:text-[#FCFCFC]">
+        <section className="projectTitle lg:hidden flex md:pt-40 pt-32 justify-between items-center self-stretch lg:py-0 lg:px-14">
+        <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
           Projects
         </span>
-        {/* <SortButton options={sortOptions} value={sortBy} onChange={setSortBy} /> */}
       </section>
-        <div className=" md:px-14 px-0 lg:pt-40 w-full">
+        <div className="lg:px-14 lg:pt-24 w-full">
           <CategoryBtn
         categories={categories}
         activeCategory={activeCategory}
@@ -117,12 +116,12 @@ function Projects({ showSection = false }) {
           </div>
 
           <div
-            className="hidden w-full lg:grid grid-cols-2 gap-y-[4.5rem] 
-            py-[4.5rem] px-14 gap-6 items-center"
+            className="hidden w-full lg:grid grid-cols-3 gap-y-[4.5rem] 
+            py-5 px-14 gap-6 items-center"
             role="list"
             aria-label="Available categories on my shelf"
           >
-            <Cards data={filteredData} onCardClick={handleCardClick} />
+            <Cards data={lgFirst} onCardClick={handleCardClick} />
           </div>
         </>
       )}
