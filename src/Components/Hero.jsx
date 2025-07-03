@@ -10,7 +10,7 @@ function handleKeyDown(e) {
 
 function Hero({ showButton = true }) {
   return (
-    <section className="hero bg-[radial-gradient(61.86%_50%_at_50%_50%,_#D281A7_0%,_#FFF_34.5%)] dark:bg-[radial-gradient(61.86%_50%_at_50%_50%,_#76073B_0%,_#100108_34.5%)] flex flex-col w-full justify-end items-start px-4 pt-[22.5rem] lg:pb-10 pb-20 md:px-8 lg:px-14  lg:pt-[15rem] md:gap-[0.625rem] gap-5">
+    <section className="hero bg-[radial-gradient(61.86%_50%_at_50%_50%,_#D281A7_0%,_#FFF_34.5%)] dark:bg-[radial-gradient(61.86%_50%_at_50%_50%,_#76073B_0%,_#100108_34.5%)] flex flex-col w-full justify-end items-start px-4 pt-[20rem] lg:pb-10 pb-20 md:px-8 lg:px-14  lg:pt-[15rem] md:gap-[0.625rem] gap-5">
       <span className="text-[#100108] dark:text-[#FCFCFC] font-inter md:text-[1.25rem] lg:text-[1.75rem] text-[1.125rem] font-[400] leading-normal">
         Hello, I am Norno.
       </span>
