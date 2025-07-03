@@ -15,7 +15,7 @@ function Testimonial({ data }) {
 
     appendDots: (dots) => (
       <div className="flex justify-center py-1">
-        <ul className="slick-dots gap-1 items-center flex active:bg-white active:dark:bg-black">{dots}</ul>
+        <ul className="slick-dots gap-1 items-center flex">{dots}</ul>
       </div>
     ),
     customPaging: (i) => (

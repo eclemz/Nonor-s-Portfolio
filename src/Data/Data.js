@@ -8,7 +8,7 @@ import img6 from "../Assets/mine.png";
 
 export const cardData = [
  {
-    image: img1,
+    image: "COL-23.png",
     title: "COL-23",
     date: "Oct 23 2024",
     desc: "Saas",
@@ -16,7 +16,7 @@ export const cardData = [
     about solving User problems, bringing`
   },
   {
-    image: img2,
+    image: "Creatneste.png",
     title: "Creatneste",
     date: "Oct 23 2024",
     desc: "Saas",
@@ -25,7 +25,7 @@ export const cardData = [
   },
   
   {
-    image: img3,
+    image: "E&P.png",
     title: "First E & P",
     date: "Oct 23 2024",
     desc: "Fintech",
@@ -33,7 +33,7 @@ export const cardData = [
     about solving User problems, bringing`
   },
   {
-    image: img4,
+    image: "nima.png",
     title: "Cashhut",
     date: "Oct 23 2024",
     desc: "Edtech",
@@ -47,19 +47,19 @@ export const cardData1 = [
     name: "Adama Tumae",
     description: `Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et 
 velit interdum, ac aliquet odio mattis.`,
-    image: img5,
+    image: "testimonial.png",
   },
   {
     name: "Bob Silver",
     description: `Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et 
 velit interdum, ac aliquet odio mattis.`,
-    image: img5,
+    image: "testimonial.png",
   },
   {
     name: "Clara Ezeh",
     description: `Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et 
 velit interdum, ac aliquet odio mattis.`,
-    image: img5,
+    image: "testimonial.png",
   },
 ];
 
@@ -68,7 +68,7 @@ export const cardData2 = {
    "col-23": [
     {
     id: 1,
-    image1: img1,
+    image1: "COL-23.png",
     title1: `Overview`,
     desc1: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
 
@@ -77,7 +77,7 @@ export const cardData2 = {
 
   {
     id: 2,
-    image2: img1,
+    image2: "COL-23.png",
     time2: `Oldest design`,
     title2: `Challenges`,
     desc2: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -86,7 +86,7 @@ export const cardData2 = {
   },
   {
     id: 3,
-    image3: img1,
+    image3: "COL-23.png",
     time3: `First design`,
     title3: `Feedback`,
     desc3: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -95,7 +95,7 @@ export const cardData2 = {
   },
   {
     id: 4,
-    image4: img1,
+    image4: "COL-23.png",
     time4: `First design`,
     title4: `Key Insight`,
     desc4: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -113,7 +113,7 @@ export const cardData2 = {
    creatneste: [
     {
     id: 1,
-    image1: img2,
+    image1: "Creatneste.png",
     title1: `Overview`,
     desc1: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
 
@@ -122,7 +122,7 @@ export const cardData2 = {
 
   {
     id: 2,
-    image2: img2,
+    image2: "Creatneste.png",
     time2: `Oldest design`,
     title2: `Challenges`,
     desc2: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -131,7 +131,7 @@ export const cardData2 = {
   },
   {
     id: 3,
-    image3: img2,
+    image3: "Creatneste.png",
     time3: `First design`,
     title3: `Feedback`,
     desc3: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -140,7 +140,7 @@ export const cardData2 = {
   },
   {
     id: 4,
-    image4: img2,
+    image4: "Creatneste.png",
     time4: `First design`,
     title4: `Key Insight`,
     desc4: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -160,7 +160,7 @@ export const cardData2 = {
    "first e & p": [
     {
     id: 1,
-    image1: img3,
+    image1: "E&P.png",
     title1: `Overview`,
     desc1: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
 
@@ -169,7 +169,7 @@ export const cardData2 = {
 
   {
     id: 2,
-    image2: img3,
+    image2: "E&P.png",
     time2: `Oldest design`,
     title2: `Challenges`,
     desc2: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -178,7 +178,7 @@ export const cardData2 = {
   },
   {
     id: 3,
-    image3: img3,
+    image3: "E&P.png",
     time3: `First design`,
     title3: `Feedback`,
     desc3: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -187,7 +187,7 @@ export const cardData2 = {
   },
   {
     id: 4,
-    image4: img3,
+    image4: "E&P.png",
     time4: `First design`,
     title4: `Key Insight`,
     desc4: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -205,7 +205,7 @@ export const cardData2 = {
    cashhut: [
     {
     id: 1,
-    image1: img4,
+    image1: "nima.png",
     title1: `Overview`,
     desc1: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
 
@@ -214,7 +214,7 @@ export const cardData2 = {
 
   {
     id: 2,
-    image2: img4,
+    image2: "nima.png",
     time2: `Oldest design`,
     title2: `Challenges`,
     desc2: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -223,7 +223,7 @@ export const cardData2 = {
   },
   {
     id: 3,
-    image3: img4,
+    image3: "nima.png",
     time3: `First design`,
     title3: `Feedback`,
     desc3: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -232,7 +232,7 @@ export const cardData2 = {
   },
   {
     id: 4,
-    image4: img4,
+    image4: "nima.png",
     time4: `First design`,
     title4: `Key Insight`,
     desc4: `I am  passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need.
@@ -251,7 +251,7 @@ export const cardData2 = {
 
 export const cardData3 = [
  {
-    image: img6,
+    image: "mine.png",
     title: "Tutor",
     desc: `I am passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need. 
 
@@ -260,7 +260,7 @@ export const cardData3 = [
     I understand the need to bridge the gap between user needs and company business goals, By incorporating`,
   },
   {
-    image: img6,
+    image: "mine.png",
     title: "Ux Designer",
     desc: `I am passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need. 
 
@@ -269,7 +269,7 @@ export const cardData3 = [
     I understand the need to bridge the gap between user needs and company business goals, By incorporating`,
   },
   {
-    image: img6,
+    image: "mine.png",
     title: "Social Media Mgt",
     desc: `I am passionate about solving User problems, bringing inclusive, minimal and future oriented user experience to people in need. 
 

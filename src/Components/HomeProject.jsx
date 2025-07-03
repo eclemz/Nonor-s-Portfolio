@@ -1,7 +1,7 @@
 
 import { useState, useMemo } from "react";
 import Cards from "../Components/Cards";
-import {cardData} from "../Data/data.js";
+import {cardData} from "../Data/Data.js";
 import SortButton from "../Components/SortButton";
 import { useNavigate } from "react-router-dom";
 
@@ -51,7 +51,7 @@ function HomeProject() {
       <Cards data={phoneCards} onCardClick={handleCardClick} />
       </div>
       <div
-      className="hidden min-[768px]:flex- w-full gap-[2.5rem] items-center py-[2.5rem] gap-[1.5rem] px-[0] self-stretch "
+      className="hidden min-[768px]:flex- w-full gap-[2.5rem] items-center py-[2.5rem] px-[0] self-stretch "
       role="list"
       aria-label="Available categories on our shelf"
     >

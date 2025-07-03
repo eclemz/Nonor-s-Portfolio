@@ -8,7 +8,8 @@ import Footer from "./Components/Footer";
 import Hamburger from "./Components/Hamburger";
 import AboutUs from "./Pages/AboutUs";
 import ProjectPage from "./Pages/ProjectPage";
-import { cardData2 } from "./Data/Data";
+import { cardData1, cardData2 } from "./Data/Data";
+import Testimonial from "./Components/Testimonial";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/project/:projectName" element={<ProjectPage data={cardData2} />} />
         <Route path="/about" element={<AboutUs />} />
       </Routes>
+       <Testimonial data={cardData1} />
     <Footer/>
     </div>
     </>

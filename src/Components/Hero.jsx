@@ -1,4 +1,12 @@
+import Buttons1 from "./Buttons";
 import TextSwitcher from "./TextSwitcher";
+
+function handleKeyDown(e) {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    yourClickHandler();
+  }
+}
 
 function Hero({ showButton = true }) {
   return (
@@ -12,10 +20,11 @@ function Hero({ showButton = true }) {
         <span className="text-[2rem] md:text-[3rem] font-inter font-[700] text-[#100108] dark:text-[#FCFCFC]">that creates Digital Solutions</span>
       </div>
       {showButton && (
-      <button className="flex py-3 px-4 md-self-start text-[#FCFCFC]  md:self-start self-stretch items-center justify-center gap-1 border-0 bg-[#EC157D]  rounded-lg">
-        <span className="font-inter font-['Helvetica Neue'] font-[500] text-xs md:text-sm lg:text-base leading-[1.5rem]"></span>
-          Get-in-touch
-        </button>
+      <Buttons1 
+      className="md:self-start self-stretch"
+      onKeyDown={handleKeyDown}>
+        Get-in-touch
+      </Buttons1>
         )}
     </section>
   );

@@ -42,7 +42,7 @@ function Projects({ showSection = false }) {
   };
 
   return (
-    <main className="flex flex-col w-full px-4 md:px-8 py-14 md:py-0 lg:py-0 lg:px-0 pb-14 lg:pt-0 md:pt-0 pt-0 justify-center items-center gap-5 bg-[#FCFCFC] dark:bg-[#100108]">
+    <main className="flex flex-col w-full px-4 md:px-8 py-14 md:py-0 lg:py-0 lg:px-0 pb-14 lg:pb-24 justify-center items-center gap-5 bg-[#FCFCFC] dark:bg-[#100108]">
     {showSection && (
       <section className="projectTitle flex md:pt-0 justify-between items-center self-stretch lg:py-5 lg:px-14">
         <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
@@ -54,12 +54,12 @@ function Projects({ showSection = false }) {
     
       {!showSection && (
         <>
-        <section className="projectTitle lg:hidden flex md:pt-40 pt-32 justify-between items-center self-stretch lg:py-0 lg:px-14">
+        <section className="projectTitle flex lg:pt-52 md:pt-48 pt-32 justify-between items-center self-stretch lg:py-0 lg:px-14">
         <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
           Projects
         </span>
       </section>
-        <div className="lg:px-14 lg:pt-24 w-full">
+        <div className="fixed lg:px-14 top-20 md:top-20 pt-4 shadow-sm md:px-8 px-4 z-30 bg-white dark:bg-[#100108] w-full">
           <CategoryBtn
         categories={categories}
         activeCategory={activeCategory}
@@ -72,9 +72,9 @@ function Projects({ showSection = false }) {
           <div
             className="grid grid-cols-1 md:grid-cols-2
             w-full gap-10 items-center justtify-center 
-            md:justify-end md:self-stretch lg:px-14"
+            md:justify-end md:self-stretch lg:px-14 lg:py-8"
             role="list"
-            aria-label="Available categories on our shelf"
+            aria-label="Projects on our shelf"
           >
             <Cards data={filteredData} onCardClick={handleCardClick} />
           </div>
@@ -84,8 +84,8 @@ function Projects({ showSection = false }) {
         <>
           <div
             className="md:hidden w-full flex flex-col gap-10 items-start justify-center"
-            role="list"
-            aria-label="Available categories on our shelf"
+            role="card list"
+            aria-label="Projects on our shelf"
           >
             <Cards data={phoneCards} onCardClick={handleCardClick} />
           </div>
@@ -93,8 +93,8 @@ function Projects({ showSection = false }) {
           <div
             className="hidden lg:hidden md:flex w-full items-center 
             py-10 gap-6 px-[0] self-stretch "
-            role="list"
-            aria-label="Available categories on our shelf"
+            role="card list"
+            aria-label="Projects on our shelf"
           >
             <Cards
               data={tabletFirst}
@@ -103,7 +103,9 @@ function Projects({ showSection = false }) {
             />
             <div className="flex md:h-[24.3125rem] w-full flex-col 
             justify-center md:w-[30%] items-start 
-            gap-6">
+            gap-6"
+            role="card list"
+            aria-label="Projects on our shelf">
               {tabletSecond.map((card, idx) => (
                 <Cards
                   key={idx}
@@ -116,10 +118,10 @@ function Projects({ showSection = false }) {
           </div>
 
           <div
-            className="hidden w-full lg:grid grid-cols-3 gap-y-[4.5rem] 
-            py-5 px-14 gap-6 items-center"
+            className="hidden cursor-pointer w-full lg:grid grid-cols-3 gap-y-[4.5rem] 
+             py-5 px-14 gap-6 items-center"
             role="list"
-            aria-label="Available categories on my shelf"
+            aria-label="Projects on our shelf"
           >
             <Cards data={lgFirst} onCardClick={handleCardClick} />
           </div>

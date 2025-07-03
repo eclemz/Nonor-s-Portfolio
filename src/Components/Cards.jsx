@@ -1,5 +1,13 @@
-
 function Cards({ data, onCardClick, className = "" }) {
+
+
+  function handleKeyDown(e, card) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onCardClick(card);
+    }
+  }
+
   return (
     <>
       {data.map((card, index) => (
@@ -7,10 +15,31 @@ function Cards({ data, onCardClick, className = "" }) {
           key={index}
           className={`flex flex-col md:flex-1 overflow-hidden bg-white dark:bg-[#100108]
           items-start shrink-0  rounded-2xl border border-[#9D979A] ${className}`}
-          role="listitem"
           onClick={() => onCardClick(card)}
+           tabIndex={0}
+          aria-label={card.title}
+          onKeyDown={(e) => handleKeyDown(e, card)}
+          role="button"
+          style={{ cursor: "pointer" }}
         >
-          <img className="flex self-start w-full h-auto" src={card.image} alt="Category"/>
+          <picture>
+            <source
+              srcSet={`/optimized/${card.image.replace(/\.\w+$/, ".avif")}`}
+              type="image/avif"
+            />
+            <source
+              srcSet={`/optimized/${card.image.replace(/\.\w+$/, ".webp")}`}
+              type="image/webp"
+            />
+            <img
+              className="flex self-start w-full h-auto"
+              src={`/optimized/${card.image}`}
+              alt={card.imageAlt || card.title}
+              loading="lazy"
+              width={card.imageWidth || undefined}
+              height={card.imageHeight || undefined}
+            />
+          </picture>
 
           <div className="flex p-2 items-center gap-1 self-stretch">
             <div className="flex flex-col p-2 justify-center items-start gap-2 flex-1">
@@ -19,7 +48,6 @@ function Cards({ data, onCardClick, className = "" }) {
                   {card.title}
                   <hr className="h-[0.125rem] bg-[#100108] dark:bg-[#FCFCFC] w-full" />
                 </span>
-
               </div>
               <span
                 className="preserve-whitespace text-[#100108] dark:text-[#FCFCFC] font-[400] font-inter"
@@ -36,7 +64,7 @@ function Cards({ data, onCardClick, className = "" }) {
           </div>
         </article>
       ))}
-      </>
+    </>
   );
 }
 
