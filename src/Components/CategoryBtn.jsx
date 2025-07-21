@@ -4,13 +4,13 @@ function CategoryBtn({ categories, activeCategory, onCategoryChange }) {
   return (
     
     <nav aria-label="Category navigation">
-      <ul className="flex self-start justify-between items-start py-3 w-full">
-        <li className="">
+      <ul className=" flex self-start justify-between items-start py-3 w-full">
+        <li className="group">
           <button
-            className={`flex flex-col justify-center items-center py-3 px-4 gap-2 transition-all ${
+            className={`flex flex-col justify-center items-center py-3 px-4 gap-2 transition-all duration-700 ${
               activeCategory === "All"
-                ? "text-[#EC157D] border-b-2 border-[#EC157D]"
-                : "text-[#100108] dark:text-[#FCFCFC] border-b-2 border-transparent"
+                ? "text-inherit border-b-2 border-black dark:border-white"
+                : "text-[#100108] dark:text-[#FCFCFC] border-b-2 group-hover:border-black/40 dark:group-hover:border-b-white/40 border-transparent"
             }`}
             onClick={() => onCategoryChange("All")}
             aria-pressed={activeCategory === "All"} 
@@ -24,12 +24,12 @@ function CategoryBtn({ categories, activeCategory, onCategoryChange }) {
         </li>
         
         {categories.map(category => (
-          <li key={category}>
+          <li key={category} className="group">
             <button
-              className={`flex flex-col justify-center items-center py-3 px-4 gap-2 transition-all ${
+              className={`flex flex-col justify-center items-center py-3 px-4 gap-2 transition-all duration-700 ${
                 activeCategory === category
-                  ? "text-[#EC157D] border-b-2 border-[#EC157D]"
-                  : "text-[#100108] dark:text-[#FCFCFC] border-b-2 border-transparent"
+                  ? "text-inherit border-b-2 border-black dark:border-white"
+                  : "text-[#100108] dark:text-[#FCFCFC] border-b-2 group-hover:border-b-black/40 dark:group-hover:border-b-white/40 border-transparent"
               }`}
               onClick={() => onCategoryChange(category)}
               aria-pressed={activeCategory === category} 

@@ -77,37 +77,50 @@ function Hamburger({ open, onClose }) {
         aria-label="Mobile menu"
       >
         <nav
-          className="flex flex-col w-full items-start gap-8 md:p-8 py-8 px-4 text-[#100108] bg-gray-200 dark:bg-[#13070C]"
+          className="flex flex-col w-[26.875] items-start gap-8 md:p-8 py-8 px-4 text-[#100108] bg-gray-200 dark:bg-[#13070C]"
           aria-label="Main menu"
         >
           <Link
-            to="/projects"
+            to="/"
             onClick={handleLinkClick}
             className="w-full"
             tabIndex={0}
             ref={firstLinkRef}
           >
-            <div className="flex py-3 px-[165px] gap-2 self-stretch">
+            <div className="flex py-3 px-2 justify-center items-center gap-2 self-stretch">
               <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] font-[700] leading-[1.5rem]">
-                Projects
+                Home
               </span>
             </div>
           </Link>
-
           <Link
             to="/about"
             onClick={handleLinkClick}
             className="w-full"
             tabIndex={0}
+            ref={firstLinkRef}
           >
-            <div className="flex py-3 px-[165px] gap-2 self-stretch">
-              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-lg font-[700] leading-[1.5rem]">
+            <div className="flex py-3 px-2 justify-center items-center gap-2 self-stretch">
+              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] font-[700] leading-[1.5rem]">
                 About
               </span>
             </div>
           </Link>
 
-          <div className="flex py-3 px-[165px] gap-2 self-stretch">
+          <Link
+            to="/projects"
+            onClick={handleLinkClick}
+            className="w-full"
+            tabIndex={0}
+          >
+            <div className="flex py-3 px-2 justify-center items-center  gap-2 self-stretch">
+              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-lg font-[700] leading-[1.5rem]">
+                Projects
+              </span>
+            </div>
+          </Link>
+
+          <div className="flex py-3 px-2 justify-center items-center gap-2 self-stretch">
             <a
               href="https://www.linkedin.com/chinonyelum-chime-a4b0a4166/"
               target="_blank"

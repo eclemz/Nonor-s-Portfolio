@@ -31,7 +31,6 @@ code {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  /* background: black; */
   transition: background 0.3s;
 
 }
@@ -49,6 +48,6 @@ footer li {
   list-style: none;
 }
 .sortButton li {
-  /* display: inline-block; */
   list-style: none;
 }
+

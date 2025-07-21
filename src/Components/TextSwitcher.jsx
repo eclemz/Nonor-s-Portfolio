@@ -26,6 +26,7 @@ export default function TextSwitcher() {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.5 }}
         style={{ display: "inline-block" }}
+        
       >
         {texts[index].value}
       </motion.span>

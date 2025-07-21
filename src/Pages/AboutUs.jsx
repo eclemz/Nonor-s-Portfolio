@@ -3,60 +3,121 @@ import img3 from "../Assets/mobileLogo1.png";
 import img4 from "../Assets/mobileLogo2.png";
 import img5 from "../Assets/mobileLogo3.png";
 import { cardData3 } from "../Data/Data.js";
+import { motion, useSpring, useScroll } from "motion/react"
+"use client"
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+const pageTransition = {
+  initial: { opacity: 0, y: 50 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  exit: { opacity: 0, y: -50, transition: { duration: 0.4 } },
+};
 
 function AboutUs({ data = cardData3 }) {
+
+   const { scrollYProgress } = useScroll()
+    const scaleX = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    })
   return (
-    <main>
-      <section className="flex w-full flex-col items-start gap-10 pt-36 pb-14 lg:px-0 md:px-8 px-4 bg-[#FCFCFC] dark:bg-[#100108]">
+
+     <motion.main
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageTransition}
+    >
+
+      
+      <section className="flex w-full flex-col items-start gap-10 pt-36 pb-28 lt:px-0 md:px-8 px-4 bg-[#FCFCFC] dark:bg-[#100108]">
         {/* About Section */}
-        <header className="hidden lg:block">
-          {/* <Hero showButton = {false}/> */}
-          <h1 className="lg:flex justify-center items-center self-stretch text-3xl font-bold font-inter px-14 ">
-            About
-          </h1>
-        </header>
-        {data.map((card, index) => (
-          <article
-            key={card.id || card.title || index}
-            className={`flex flex-col md:flex-row md:py-[3.5rem] lg:p-14 items-start self-stretch gap-10 justify-between
-            ${index % 2 !== 0 ? "min-[768px]:flex-row-reverse" : ""}`}
-            aria-labelledby={`about-section-title-${index}`}
-          >
-            <picture>
-              <source
-                srcSet={`/optimized/${card.image.replace(/\.\w+$/, ".avif")}`}
-                type="image/avif"
-              />
-              <source
-                srcSet={`/optimized/${card.image.replace(/\.\w+$/, ".webp")}`}
-                type="image/webp"
-              />
-              <img
-                className="flex self-center h-[404px] flex-1 rounded-[1rem] border-[#FCFCFC] border-[0.1875rem]"
-                src={`/optimized/${card.image}`}
-                alt={card.title ? card.title : "About section image"}
-              />
-            </picture>
-            <div className="flex flex-col flex-1 items-start self-stretch py-[1.25rem]">
-              <h2
-                className="font-inter text-[1.25rem] font-[700] text-[#100108] dark:text-[#FCFCFC]"
-                id={`about-section-title-${index}`}
-              >
-                {card.title}
-              </h2>
-              <span
-                className="flex font-inter self-stretch text-[1.rem] font-[400] text-[#100108] dark:text-[#FCFCFC] preserve-whitespace"
-                style={{ whiteSpace: "pre-line" }}
-              >
-                {card.desc}
-              </span>
-            </div>
-          </article>
-        ))}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={staggerContainer}
+          className="flex flex-col md:py-14 gap-10 lt:px-14 lg:px-56"
+        >
+          <header className="flex items-start self-stretch gap-10 md:px-2 px-4">
+            <h1 className=" text-3xl font-bold font-inter  ">About</h1>
+          </header>
+          <motion.div
+                id="scroll-indicator"
+                style={{
+                    scaleX,
+                    position: "fixed",
+                    top: 90,
+                    left: 0,
+                    right: 0,
+                    height: 10,
+                    originX: 0,
+                    backgroundColor: "#ff0088",
+                }}
+            />
+          {data.map((card, index) => (
+            <motion.article
+              key={card.id || card.title || index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              variants={fadeInUp}
+              className={`flex flex-col md:flex-row items-start self-stretch gap-10 justify-between
+            ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
+              aria-labelledby={`about-section-title-${index}`}
+            >
+              <picture className="flex self-center justify-center">
+                <source
+                  srcSet={`/optimized/${card.image.replace(/\.\w+$/, ".avif")}`}
+                  type="image/avif"
+                />
+                <source
+                  srcSet={`/optimized/${card.image.replace(/\.\w+$/, ".webp")}`}
+                  type="image/webp"
+                />
+                <img
+                  className="flex self-center h-[404px] flex-1 rounded-2xl border-[#FCFCFC] border-[0.1875rem]"
+                  src={`/optimized/${card.image}`}
+                  alt={card.title ? card.title : "About section image"}
+                  loading="lazy"
+                />
+              </picture>
+              <div className="flex flex-col flex-1 items-start self-stretch py-[1.25rem]">
+                <h2
+                  className="font-inter text-[1.25rem] font-[700] text-[#100108] dark:text-[#FCFCFC]"
+                  id={`about-section-title-${index}`}
+                >
+                  {card.title}
+                </h2>
+                <p className="italic py-4">{card.quote}</p>
+                <span
+                  className="flex font-inter self-stretch text-base font-[400] text-[#100108] dark:text-[#FCFCFC] preserve-whitespace"
+                  style={{ whiteSpace: "pre-line" }}
+                >
+                  {card.desc}
+                </span>
+              </div>
+            </motion.article>
+          ))}
+        </motion.section>
 
         {/* Experience Section */}
-        <section className="flex flex-col items-start self-stretch gap-5 lg:py-5 lg:px-14" aria-labelledby="experience-heading">
+        <motion.section
+          className="flex flex-col items-start self-stretch gap-5 lg:py-5 lt:px-14 lg:px-56"
+          aria-labelledby="experience-heading"
+        >
           <header className="hidden lg:flex justify-center items-center self-stretch py-5 px-14">
             <h2
               className="font-inter text-3xl font-[700] text-[#100108] dark:text-[#FCFCFC]"
@@ -68,8 +129,18 @@ function AboutUs({ data = cardData3 }) {
           <h2 className="lg:hidden font-inter text-xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
             Experience
           </h2>
-          <ul className="flex flex-col justify-center items-start self-stretch gap-6" aria-label="Experience list">
-            <li className="flex flex-col justify-center items-start self-stretch gap-3">
+          <ul
+            className="flex flex-col justify-center items-start self-stretch gap-6"
+            aria-label="Experience list"
+          >
+            <motion.li
+              key="exp-1"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              className="flex flex-col justify-center items-start self-stretch gap-3"
+            >
               <div className="flex items-center self-stretch gap-4">
                 <img
                   src={img2}
@@ -95,8 +166,15 @@ function AboutUs({ data = cardData3 }) {
               <span className="flex flex-col items-start font-inter text-[#100108] dark:text-[#FCFCFC] text-[1rem] font-[400]">
                 Thriveagric
               </span>
-            </li>
-            <li className="flex flex-col justify-center items-start self-stretch gap-3">
+            </motion.li>
+            <motion.li
+              key="exp-2"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              className="flex flex-col justify-center items-start self-stretch gap-3"
+            >
               <div className="flex items-center self-stretch gap-[1rem]">
                 <img
                   src={img3}
@@ -122,8 +200,15 @@ function AboutUs({ data = cardData3 }) {
               <span className="flex flex-col items-start font-inter text-[#100108] dark:text-[#FCFCFC] text-[1rem] font-[400]">
                 Thriveagric
               </span>
-            </li>
-            <li className="flex flex-col justify-center items-start self-stretch gap-3">
+            </motion.li>
+            <motion.li
+              key="exp-3"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              className="flex flex-col justify-center items-start self-stretch gap-3"
+            >
               <div className="flex items-center self-stretch gap-[1rem]">
                 <img
                   src={img4}
@@ -149,8 +234,15 @@ function AboutUs({ data = cardData3 }) {
               <span className="flex flex-col items-start font-inter text-[#100108] dark:text-[#FCFCFC] text-[1rem] font-[400]">
                 Thriveagric
               </span>
-            </li>
-            <li className="flex flex-col justify-center items-start self-stretch gap-3">
+            </motion.li>
+            <motion.li
+              key="exp-4"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              className="flex flex-col justify-center items-start self-stretch gap-3"
+            >
               <div className="flex items-center self-stretch gap-[1rem]">
                 <img
                   src={img5}
@@ -176,11 +268,11 @@ function AboutUs({ data = cardData3 }) {
               <span className="flex flex-col items-start font-inter text-[#100108] dark:text-[#FCFCFC] text-[1rem] font-[400]">
                 Thriveagric
               </span>
-            </li>
+            </motion.li>
           </ul>
-        </section>
+        </motion.section>
       </section>
-    </main>
+    </motion.main>
   );
 }
 

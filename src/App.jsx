@@ -10,6 +10,7 @@ import AboutUs from "./Pages/AboutUs";
 import ProjectPage from "./Pages/ProjectPage";
 import { cardData1, cardData2 } from "./Data/Data";
 import Testimonial from "./Components/Testimonial";
+import { AnimatePresence } from "framer-motion";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       {/* <div className="bg-black text-white min-h-screen">test run</div> */}
       <Dashboard onHamburgerClick={() => setMenuOpen(true)}/>
       <Hamburger open={menuOpen} onClose={() => setMenuOpen(false)}/>
+      <AnimatePresence mode="wait">
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/hero" element={<Hero />} /> */}
@@ -30,6 +32,7 @@ function App() {
         <Route path="/project/:projectName" element={<ProjectPage data={cardData2} />} />
         <Route path="/about" element={<AboutUs />} />
       </Routes>
+      </AnimatePresence>
        <Testimonial data={cardData1} />
     <Footer/>
     </div>

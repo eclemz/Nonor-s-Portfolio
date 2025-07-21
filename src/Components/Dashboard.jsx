@@ -6,14 +6,11 @@ import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import Buttons1 from "./Buttons";
 
-
 function Dashboard({ onHamburgerClick }) {
   return (
-    <section
-      className="dashboard w-full shadow-sm dark:shadow-gray-800 flex flex-col lg:pt-0 md:pt-12 px-4 md:px-8 lg:px-14 lg:py-0 items-start shrink-0 bg-[#FCFCFC] dark:bg-[#100108] fixed top-0 left-0 z-40"
-    >
+    <section className="dashboard w-full shadow-sm dark:shadow-gray-800 flex flex-col lg:pt-0 md:pt-12 px-4 md:px-8 lg:px-14 lg:py-0 items-start shrink-0 bg-[#FCFCFC] dark:bg-[#100108] fixed top-0 left-0 z-40">
       <div className="md:hidden flex py-5 justify-between items-center self-stretch">
-        <div className="flex justify-center items-center gap-2">
+        <div className="flex justify-center items-center gap-2 cursor-pointer">
           <Link to="/" aria-label="Homepage">
             <img
               src={logo}
@@ -32,7 +29,7 @@ function Dashboard({ onHamburgerClick }) {
         </div>
 
         <button
-          className="flex justify-center items-center w-10 h-10 shrink-0 transition-all duration-300 ease-in-out border-0 bg-[#FCFCFC] dark:bg-[#100108] focus:outline-none"
+          className="flex justify-center items-center w-10 h-10 shrink-0 transition-all duration-300 ease-in-out border-0 cursor-pointer bg-[#FCFCFC] dark:bg-[#100108] focus:outline-none"
           type="button"
           onClick={onHamburgerClick}
           aria-label="Open menu"
@@ -45,7 +42,11 @@ function Dashboard({ onHamburgerClick }) {
       </div>
 
       <div className="hidden w-full  md:flex  justify-between items-center lg:self-stretch">
-        <Link to="/" className="flex items-center gap-[0.5rem]" aria-label="Homepage">
+        <Link
+          to="/"
+          className="flex items-center gap-[0.5rem]"
+          aria-label="Homepage"
+        >
           <img
             src={logo}
             alt="Chinonye Chime logo"
@@ -65,11 +66,10 @@ function Dashboard({ onHamburgerClick }) {
             <NavLink
               to="/projects"
               className={({ isActive }) =>
-                `font-inter lg:text-base md:text-sm font-[400] text-[#100108] dark:text-[#FCFCFC] flex flex-col items-center ${
+                `group font-inter cursor-pointer lg:text-base md:text-sm font-[400] text-[#100108] dark:text-[#FCFCFC] flex flex-col items-center ${
                   isActive ? "font-bold" : ""
                 }`
               }
-              
               aria-current={({ isActive }) => (isActive ? "page" : undefined)}
             >
               {({ isActive }) => (
@@ -77,8 +77,9 @@ function Dashboard({ onHamburgerClick }) {
                   Project
                   <hr
                     className={`mt-1 h-[0.125rem] w-16 rounded bg-[#100108] dark:bg-[#FCFCFC] border-0 transition-all duration-300 ${
-                      isActive ? "opacity-100" && "h-[3px]" : "opacity-0"
-                    }`}
+                      isActive ? "opacity-100" && "h-[3px]" : "opacity-0 group-hover:opacity-40"
+                    } 
+                    `}
                   />
                 </>
               )}
@@ -89,11 +90,10 @@ function Dashboard({ onHamburgerClick }) {
             <NavLink
               to="/about"
               className={({ isActive }) =>
-                `font-inter lg:text-base md:text-sm font-[400] text-[#100108] dark:text-[#FCFCFC] flex flex-col items-center ${
+                `group font-inter lg:text-base md:text-sm font-[400] text-[#100108] dark:text-[#FCFCFC] flex flex-col items-center cursor-pointer ${
                   isActive ? "font-bold" : ""
                 }`
               }
-              
               aria-current={({ isActive }) => (isActive ? "page" : undefined)}
             >
               {({ isActive }) => (
@@ -101,7 +101,7 @@ function Dashboard({ onHamburgerClick }) {
                   About
                   <hr
                     className={`mt-1 h-[0.125rem] w-14 rounded bg-[#100108] dark:bg-[#FCFCFC] border-0 transition-all duration-300 ${
-                      isActive ? "opacity-100" && "h-[3px]" : "opacity-0"
+                      isActive ? "opacity-100" && "h-[3px]" : "opacity-0 group-hover:opacity-40"
                     }`}
                   />
                 </>
@@ -112,24 +112,22 @@ function Dashboard({ onHamburgerClick }) {
         <div className="flex justify-center self-stretch items-center gap-[1rem] lg:py-3">
           <ThemeToggle />
           <a
-            href="https://linkedin.com/"
+            href="http://linkedin.com/in/chinonyelum-chime-a4b0a4166"
             target="_blank"
-            rel="noopener noreferrer" 
-            className="flex justify-center items-center gap-3 py-5 px-4"
-            aria-label="Open Chinonye Chime LinkedIn profile in a new tab" 
+            rel="noopener noreferrer"
+            className="group flex justify-center items-center gap-1 py-5 px-4 cursor-pointer"
+            aria-label="Open Chinonye Chime LinkedIn profile in a new tab"
           >
             <span className="text-[#100108] dark:text-[#FCFCFC] font-inter lg:text-base md:text-sm font-[400] leading-6">
               LinkedIn
             </span>
             <MdArrowOutward
-              className="h-5 w-5 text-[#100108] dark:text-[#FCFCFC]"
-              aria-hidden="true" 
+              className="opacity-0 group-hover:opacity-100 h-5 w-5 text-[#100108] dark:text-[#FCFCFC] transition-opacity duration-300"
+              aria-hidden="true"
             />
           </a>
-          <Buttons1
-            className="md:self-start self-stretch"
-          >
-            Get-in-touch
+          <Buttons1 className="md:self-start self-stretch">
+           Let’s work together
           </Buttons1>
         </div>
       </div>

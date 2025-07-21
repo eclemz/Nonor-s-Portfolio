@@ -1,23 +1,34 @@
-
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { cardData2 } from "../Data/Data";
 import { IoIosArrowBack } from "react-icons/io";
-import { useRef } from "react";
-
+import { useRef, useEffect, useState } from "react";
+import { IoIosLink } from "react-icons/io";
 
 function PictureOptimized({ file, alt = "", className = "" }) {
   if (!file) return null;
-  
+
   return (
     <picture>
-      <source srcSet={`/optimized/${file.replace(/\.\w+$/, ".avif")}`} type="image/avif" />
-      <source srcSet={`/optimized/${file.replace(/\.\w+$/, ".webp")}`} type="image/webp" />
-      <img src={`/optimized/${file}`} alt={alt} className={className} loading="lazy" />
+      <source
+        srcSet={`/optimized/${file.replace(/\.\w+$/, ".avif")}`}
+        type="image/avif"
+      />
+      <source
+        srcSet={`/optimized/${file.replace(/\.\w+$/, ".webp")}`}
+        type="image/webp"
+      />
+      <img
+        src={`/optimized/${file}`}
+        alt={alt}
+        className={className}
+        loading="lazy"
+      />
     </picture>
   );
 }
 
 function ProjectPage() {
+  const [activeIndex, setActiveIndex] = useState(null);
   const params = useParams();
   const navigate = useNavigate();
   const sections = cardData2[params.projectName];
@@ -27,7 +38,6 @@ function ProjectPage() {
     return (
       <div className="text-white">
         <p>Project not found.</p>
-        {/* Added: aria-label for clarity */}
         <button
           onClick={() => navigate(-1)}
           className="underline text-blue-500"
@@ -45,9 +55,38 @@ function ProjectPage() {
   const handleScroll = (idx) => {
     sectionRefs.current[idx]?.scrollIntoView({
       behavior: "smooth",
-      block: "start",
+      block: "center",
+      inline: "nearest",
     });
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            sectionRefs.current.forEach((ref, i) => {
+              if (ref && ref.isSameNode(entry.target)) {
+                console.log("In view:", i);
+                setActiveIndex(i);
+              }
+            });
+          }
+        });
+      },
+      { root: null, rootMargin: "0px 0px -30% 0px", threshold: 0.25 }
+    );
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      sectionRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
 
   return (
     <main className="flex flex-col items-start py-12 lg:px-14 md:px-8 px-4 md:gap-10 gap-5 bg-white dark:bg-[#100108] w-full">
@@ -75,10 +114,8 @@ function ProjectPage() {
         <span className="font-inter text-2xl font-[700] text-black dark:text-[#FCFCFC]">
           {params.projectName}
         </span>
-        <a
-          href=""
-          aria-label={`Open external link for ${params.projectName}`}
-        >
+        <a href="" aria-label={`Open external link for ${params.projectName}`}>
+          <IoIosLink />
           <span className='self-stretch text-black dark:text-[#FCFCFC] font-inter text-base font-[500] underline decoration-solid decoration-1 underline-offset-2"'>
             Link
           </span>
@@ -86,7 +123,6 @@ function ProjectPage() {
       </div>
       <div className="md:hidden block">
         {[1, 2, 3, 4, 5].map((n, i) => {
-          // Find the section object that has the keys for this n
           const section = sections.find(
             (s) => s[`title${n}`] || s[`desc${n}`] || s[`image${n}`]
           );
@@ -105,6 +141,7 @@ function ProjectPage() {
                     file={image}
                     alt={title ?? `Project image section ${n}`}
                     className="w-full rounded-lg"
+                    loading="lazy"
                   />
                 )}
                 {time && (
@@ -130,14 +167,15 @@ function ProjectPage() {
 
       <div className="hidden md:flex lg:pl-32 flex-row gap-7 bg-white dark:bg-[#100108] ">
         <div className="hidden lg:flex w-full flex-col gap-2 fixed left-0 py-3 px-14 top-[5.8125rem] z-30 items-start bg-inherit">
-          <span className="font-inter text-[2.5rem] lg:text-2xl font-bold text-black dark:text-[#FCFCFC]">
+          <span className="font-inter text-2xl lg:text-2xl font-bold text-black dark:text-[#FCFCFC]">
             {displayName}
           </span>
           <a
             href=""
-            className="text-black dark:text-[#FCFCFC] font-inter text-sm lg:text-xl font-[500] underline decoration-solid decoration-2 underline-offset-4"
+            className="group text-black flex dark:text-[#FCFCFC] gap-2 font-inter text-sm lg:text-xl font-[500] underline decoration-solid decoration-2 underline-offset-4"
             aria-label={`Open external link for ${displayName}`}
           >
+            {/* <IoIosLink className="group-hover:opacity-100 opacity-0"/> */}
             Link
           </a>
         </div>
@@ -147,82 +185,114 @@ function ProjectPage() {
           className="md:hidden lg:flex flex-col fixed z-30 gap-2 px-8 py-3 pitems-start left-6 top-48"
           aria-label="Section navigation"
         >
-          <h3 className="text-2xl font-inter font-semibold">Content</h3>
+          <h3 className="text-2xl font-inter font-semibold text-[#746C70]">
+            Content
+          </h3>
           {sections.map((section, idx) => (
             <button
               key={idx}
-              className="text-black gap-2 dark:text-[#FCFCFC] py-2 rounded justify-center transition-colors text-left"
+              className={`group relative text-black gap-2 dark:text-[#FCFCFC] py-2 rounded justify-center transition-colors text-left ${
+                idx === activeIndex ? "font-semibold" : ""
+              }`}
               onClick={() => handleScroll(idx)}
-              aria-label={`Scroll to section ${section.title || section.title1 || section.title2 || section.title3 || section.title4 || section.title5 || idx + 1}`}
-            >
-              {section.title ||
+              aria-label={`Scroll to section ${
+                section.title  ||
                 section.title1 ||
                 section.title2 ||
                 section.title3 ||
                 section.title4 ||
-                section.title5}
+                section.title5 ||
+                idx + 1
+              }`}
+            >
+             
+              <span className="inline-block  relative">
+              <span
+                className={`font-inter ${
+                  idx === activeIndex ? "font-semibold" : ""
+                }`}
+              >
+                {
+                  section.title  ||
+                  section.title1 ||
+                  section.title2 ||
+                  section.title3 ||
+                  section.title4 ||
+                  section.title5
+                }
+              </span>
+              {idx === activeIndex && (
+                <span className="block h-1 bg-[#100108] dark:bg-[#FCFCFC] mt-1 w-full transition-all duration-300" />
+              )}
+              </span>
             </button>
           ))}
         </aside>
 
         {/* For Desktop */}
-        <div className="flex flex-col lg:pt-[9.5rem] bg-white dark:bg-[#100108]">
+        <div className="flex flex-col lg:pt-[9.5rem] lt:px-14 lg:px-56 bg-white dark:bg-[#100108] gap-16">
           {/* First Card - Column, full stretch */}
           {sections[0] && (
             <article
               ref={(el) => (sectionRefs.current[0] = el)}
-              className="flex flex-col w-full gap-4 bg-white dark:bg-[#100108] rounded-lg"
+              className="flex flex-col w-full gap-16 bg-white dark:bg-[#100108] rounded-lg"
             >
               <PictureOptimized
                 file={sections[0].image1}
                 alt={sections[0].title1 ?? "Project image section 1"}
                 className="w-full rounded-lg"
               />
-              <h3 className="font-inter text-[#9D979A] text-xl font-bold">
-                {sections[0].title1}
-              </h3>
-              <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
-                {sections[0].desc1}
-              </span>
+              <div className="flex flex-col self-stretch items-start gap-4">
+                <h3 className="font-inter text-[#9D979A] text-xl font-bold">
+                  {sections[0].title1}
+                </h3>
+                <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
+                  {sections[0].desc1}
+                </span>
+              </div>
             </article>
           )}
 
           {/* Second Card - Grid, 2 columns, swapped order */}
           {sections[1] && sections[2] && sections[3] && sections[4] && (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+              <div className="grid grid-cols-1 md:grid-rows-2 gap-16 w-full">
                 {/* First column: image then title/desc */}
                 <article
                   ref={(el) => (sectionRefs.current[1] = el)}
-                  className="flex flex-col gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg"
+                  className="flex items-start self-stretch gap-5 bg-white dark:bg-[#100108] p-4 rounded-lg"
                 >
                   <PictureOptimized
                     file={sections[1].image2}
                     alt={sections[1].title2 ?? "Project image section 2"}
-                    className="w-full rounded-lg"
+                    className="w-full h-[268px] rounded-lg"
                   />
-                  <h3 className="font-inter text-[#9D979A] text-xl font-bold">
-                    {sections[1].title2}
-                  </h3>
-                  <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
-                    {sections[1].desc2}
-                  </span>
+                  <div className="flex flex-col self-stretch items-start gap-4 flex-1">
+                    <h3 className="font-inter text-[#9D979A] text-xl font-bold">
+                      {sections[1].title2}
+                    </h3>
+                    <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
+                      {sections[1].desc2}
+                    </span>
+                  </div>
                 </article>
                 {/* Second column: title/desc then image */}
                 <article
                   ref={(el) => (sectionRefs.current[2] = el)}
-                  className="flex flex-col gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg"
+                  className="flex items-start gap-5 bg-white dark:bg-[#100108] p-4 rounded-lg"
                 >
-                  <h3 className="font-inter text-[#9D979A] text-xl font-bold">
-                    {sections[2].title3}
-                  </h3>
-                  <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
-                    {sections[2].desc3}
-                  </span>
+                  <div className="flex flex-col self-stretch items-start gap-4 flex-1 ">
+                    <h3 className="font-inter text-[#9D979A] text-xl font-bold">
+                      {sections[2].title3}
+                    </h3>
+                    <span className="font-inter text-[#1a1020] dark:text-[#FCFCFC] text-base font-normal">
+                      {sections[2].desc3}
+                    </span>
+                  </div>
                   <PictureOptimized
                     file={sections[2].image3}
                     alt={sections[2].title3 ?? "Project image section 3"}
-                    className="w-full rounded-lg"
+                    className="w-full h-[268px] rounded-lg"
                   />
                 </article>
               </div>
@@ -251,7 +321,10 @@ function ProjectPage() {
                     <h3 className="font-inter text-[#9D979A] text-xl font-bold">
                       {sections[4].title5}
                     </h3>
-                    <span className="font-inter text-black dark:text-[#FCFCFC] text-base font-normal">
+                    <span
+                      className="font-inter text-black dark:text-[#FCFCFC] text-base font-normal"
+                      ref={(el) => (sectionRefs.current[4] = el)}
+                    >
                       {sections[4].desc5}
                     </span>
                   </div>
@@ -259,10 +332,7 @@ function ProjectPage() {
               </article>
 
               {sections[4] && (
-                <article
-                  ref={(el) => (sectionRefs.current[4] = el)}
-                  className="lg:hidden flex flex-col w-full gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg"
-                >
+                <article className="lg:hidden flex flex-col w-full gap-4 bg-white dark:bg-[#100108] p-4 rounded-lg">
                   <h3 className="font-inter text-[#9D979A] text-xl font-bold">
                     {sections[4].title5}
                   </h3>

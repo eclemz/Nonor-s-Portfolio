@@ -12,6 +12,10 @@ function Testimonial({ data }) {
     autoplay: true,
     autoplaySpeed: 2500,
     arrows: false,
+    fade: false,
+    pauseOnHover: true,
+    useTransform: true,
+
 
     appendDots: (dots) => (
       <div className="flex justify-center py-1">
@@ -24,7 +28,7 @@ function Testimonial({ data }) {
   };
 
   return (
-    <main className="flex w-full flex-col items-center gap-6 bg-[#FCFCFC] dark:bg-[#100108] lg:py-14 md:py-10 py-14 px-4 md:px-8 lg:px-14">
+    <main className="flex w-full flex-col items-center gap-5 bg-[#FCFCFC] dark:bg-[#100108] lg:py-14 md:py-10 py-14 px-4 md:px-8 lg:px-14">
       <h2 className="text-2xl md:text-3xl font-[700] text-[#100108] dark:text-[#FCFCFC] text-center">
         Testimonial
       </h2>
@@ -32,14 +36,14 @@ function Testimonial({ data }) {
       <div className="w-full flex justify-center gap-12 items-center self-stretch ">
         <Slider
           {...settings}
-          className="w-[19.4375rem] flex flex-col items-center gap-4 bg-[#FCFCFC] dark:bg-[#100108] px-4"
+          className="lg:w-[26.5rem] w-[19.4375rem] flex flex-col items-center gap-4 bg-[#FCFCFC] dark:bg-[#100108] px-4"
         >
           {data.map((card, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center bg-white rounded shadow dark:bg-[#100108]"
+              className="flex flex-col items-center bg-[#FCFCFC] dark:bg-[#100108]"
             >
-              <p className=" text-[#100108] dark:text-[#FCFCFC] font-inter text-base font-[400] text-center">
+              <p className=" text-[#100108] dark:text-[#FCFCFC] font-inter lg:text-xl text-base font-[400] text-center self-stretch">
                 {card.description}
               </p>
               <div className="flex flex-col items-center gap-2">

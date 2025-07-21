@@ -30,7 +30,7 @@ function ThemeToggle() {
       } 
       onClick={toggleTheme}
       className={`
-        w-14 h-8 rounded-[32px] border-0 flex justify-start items-center p-1 transition-colors duration-300
+        w-14 h-8 rounded-[32px] border-0 flex justify-start items-center p-1 transition-all duration-300
         ${theme === "dark" ? "bg-[#9D979A]" : "bg-[#392C32]"}
       `}
     >
