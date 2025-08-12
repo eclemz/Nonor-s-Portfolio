@@ -173,7 +173,7 @@ function ProjectPage() {
   const impacts = sections.find((s) => s.id === 5);
 
   return (
-    <main className="flex flex-col items-start py-12 lg:px-14 md:px-8 px-4 md:gap-10 gap-5 bg-white dark:bg-[#100108] w-full">
+    <main className="flex flex-col items-start py-12 lg:px-14 lt:px-10 md:px-8 px-4 md:gap-10 gap-5 bg-white dark:bg-[#100108] w-full">
       <nav
         className="lg:hidden md:flex lg:pt-28 md:pt-20 pt-12  md:-mb-8 -mb-4 justify-center items-center gap-3 bg-inherit text-black dark:text-[#FCFCFC]"
         role="navigation"
@@ -286,7 +286,7 @@ function ProjectPage() {
       </div>
 
       {/* Sidebar and unified layout */}
-      <div className="hidden md:flex lg:pl-32 flex-row gap-7 bg-white dark:bg-[#100108] ">
+      <div className="hidden md:flex lt:pl-16 lg:pl-32 flex-row gap-7 bg-white dark:bg-[#100108] ">
         <div className="hidden lg:flex w-full flex-col gap-2 fixed left-0 py-3 px-14 top-[5.8125rem] z-30 items-start bg-inherit">
           <span className="font-inter text-2xl lg:text-2xl font-bold text-black dark:text-[#FCFCFC]">
             {displayName}
@@ -332,7 +332,7 @@ function ProjectPage() {
         </aside>
 
         {/* Unified layout for all screen sizes */}
-        <div className="flex flex-col lg:pt-[9.5rem] lt:px-14 lg:px-56 bg-white dark:bg-[#100108] gap-16">
+        <div className="flex flex-col lg:pt-[9.5rem] lt:px-16 lg:px-[120px] bg-white dark:bg-[#100108] gap-16">
           {/* Overview (full width) */}
           {overview && (
             <article
@@ -361,7 +361,7 @@ function ProjectPage() {
               ref={(el) => (sectionRefs.current[overview ? 1 : 0] = el)}
               className="flex items-center self-stretch gap-5 bg-white dark:bg-[#100108] rounded-lg"
             >
-              <div className="flex flex-col self-stretch items-start gap-4 flex-1">
+              <div className="flex flex-col self-stretch items-start md:gap-5 gap-4 flex-1">
                 <h3 className="font-inter text-[#9D979A] text-xl font-bold">
                   {challenges.title2 ?? challenges.title1}
                 </h3>
@@ -375,7 +375,7 @@ function ProjectPage() {
                 alt={
                   challenges.title2 ?? challenges.title1 ?? "Project challenges"
                 }
-                className="h-[31.5rem] self-center"
+                className="lg:h-[31.5rem] md:h-[25.75rem] w-full self-stretch flex-1"
               />
             </article>
           )}

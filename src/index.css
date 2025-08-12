@@ -29,12 +29,14 @@ body {
 }
 
 .marquee-track {
-  animation: scroll-marquee 10s linear infinite;
+  display: flex;
+  width: fit-content;
+  animation: scroll-marquee 20s linear infinite;
 }
 
 @keyframes scroll-marquee {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-50%);

@@ -43,7 +43,7 @@ function Testimonial({ data }) {
               key={idx}
               className="flex flex-col py-5 px-3 space-y-2 items-center bg-[#FCFCFC] dark:bg-[#100108]"
             >
-              <p className=" text-[#100108] dark:text-[#FFF] font-inter lg:text-lg text-sm font-[400] text-center self-stretch">
+              <p className=" text-[#100108] dark:text-[#FFF] font-inter lg:text-base text-sm font-[400] text-center self-stretch">
                 {card.description}
               </p>
               <div className="flex flex-col items-center ">

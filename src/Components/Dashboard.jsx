@@ -55,7 +55,7 @@ function Dashboard({ onHamburgerClick }) {
         </button>
       </div>
 
-      <div className="lt:hidden md:hidden hidden w-full lg:flex justify-between items-center lg:self-stretch">
+      <div className=" md:hidden hidden w-full lg:flex justify-between items-center lg:self-stretch">
         <Link
           to="/"
           className="flex items-center gap-[0.5rem]"

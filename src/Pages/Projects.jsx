@@ -48,11 +48,11 @@ function Projects({ showSection = false }) {
             <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
               Projects
             </span>
-            <SortButton
+            {/* <SortButton
               options={sortOptions}
               value={sortBy}
               onChange={setSortBy}
-            />
+            /> */}
           </section>
           <section className="hidden projectTitle md:flex items-center flex-col md:pt-0 w-full lg:py-5 lg:px-14">
             <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
@@ -78,9 +78,9 @@ function Projects({ showSection = false }) {
       )}
       {!showSection && (
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
-            w-full gap-10 items-center justify-center 
-            md:justify-end md:self-stretch lg:px-14 md:pt-[275px] pt-48 pb-10"
+          className="grid grid-cols-1 md:grid-cols-2 lt:grid-cols-2 lg:grid-cols-3
+            w-full gap-10 md:gap-6 items-center justify-center 
+            md:justify-end md:self-stretch lg:gap-y-16 lg:px-14 md:pt-[275px] pt-48 pb-10"
           whileTap={{ scale: 0.96 }}
         >
           <Cards data={filteredData} onCardClick={handleCardClick} />
@@ -98,7 +98,7 @@ function Projects({ showSection = false }) {
           </div>
 
           <div
-            className="hidden cursor-pointer w-full md:grid md:grid-cols-2 lg:grid-cols-3 lg:gap-y-[4.5rem] 
+            className="hidden cursor-pointer w-full md:grid md:grid-cols-2 lt:grid-cols-2 lg:grid-cols-3 lg:gap-y-[4.5rem] 
              lg:py-5 lg:px-14 md:py-0 md:px-0 gap-6 items-center"
             role="list"
             aria-label="Projects on our shelf"

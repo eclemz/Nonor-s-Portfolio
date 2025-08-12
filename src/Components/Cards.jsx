@@ -38,7 +38,7 @@ function Cards({ data, onCardClick, className = "" }) {
       {data.map((card, index) => (
         <article
           key={index}
-          className={`card min-h-[420px] w-full flex flex-col md:flex-1 overflow-hidden bg-white dark:bg-[#100108]
+          className={`card w-full flex flex-col md:flex-1 overflow-hidden bg-white dark:bg-[#100108]
           items-start lg:flex-1 hover:dark:shadow-[0_2px_8px_rgba(252,252,252,0.10)] hover:shadow-[0_2px_8px_rgba(0,0,0,0.10)] shrink-0  md:rounded-2xl active:scale-[0.98] hover:scale-[1.02] rounded-lg border-[0.231px] border-[#b4b2b2] dark:border-[#494949] transition-all duration-300 ease-in-out ${className}`}
           onClick={() => onCardClick(card)}
           tabIndex={0}
@@ -47,9 +47,9 @@ function Cards({ data, onCardClick, className = "" }) {
           role="button"
           style={{ cursor: "pointer" }}
         >
-          <picture>
+          <picture className="w-full">
             <img
-              className="self-stretch h-[100%] lg:w-[27rem] w-[25rem] md:w-[23rem] "
+              className="self-stretch w-full "
               src={`/optimized/${card.image}`}
               alt={card.imageAlt || card.title}
               loading="lazy"
@@ -77,7 +77,7 @@ function Cards({ data, onCardClick, className = "" }) {
               >
                 {renderBoldText(card.about)}
               </span>
-              <div className="md:hidden flex items-center gap-[1.5rem]">
+              <div className="flex items-center gap-[1.5rem]">
                 <span className="flex justify-center items-center py-[0.232rem] px-[0.563rem] text-xs font-inter font-[500] text-[#100108] dark:text-[#FCFCFC] leading-[1.5rem] rounded-md border border-[#100108] dark:border-[#FCFCFC]">
                   {card.desc}
                 </span>

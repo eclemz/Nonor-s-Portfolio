@@ -92,7 +92,7 @@ function Hamburger({ open, onClose }) {
           className="flex flex-col w-[26.875] items-start gap-8 md:p-8 py-8 px-4 text-[#100108] bg-gray-200 dark:bg-[#13070C]"
           aria-label="Main menu"
         >
-          <Link
+          {/* <Link
             to="/"
             onClick={handleLinkClick}
             className="w-full"
@@ -104,7 +104,7 @@ function Hamburger({ open, onClose }) {
                 Home
               </span>
             </div>
-          </Link>
+          </Link> */}
           <Link
             to="/about"
             onClick={handleLinkClick}
@@ -113,7 +113,7 @@ function Hamburger({ open, onClose }) {
             ref={firstLinkRef}
           >
             <div className="flex py-3 px-2 justify-center items-center gap-2 self-stretch">
-              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] font-[700] leading-[1.5rem]">
+              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] leading-[1.5rem]">
                 About
               </span>
             </div>
@@ -126,7 +126,7 @@ function Hamburger({ open, onClose }) {
             tabIndex={0}
           >
             <div className="flex py-3 px-2 justify-center items-center  gap-2 self-stretch">
-              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-lg font-[700] leading-[1.5rem]">
+              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-lg leading-[1.5rem]">
                 Projects
               </span>
             </div>
@@ -142,7 +142,7 @@ function Hamburger({ open, onClose }) {
               aria-label="Open Chinonye Chime LinkedIn profile in a new tab"
               tabIndex={0}
             >
-              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-lg font-[700] leading-[1.5rem]">
+              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-lg leading-[1.5rem]">
                 LinkedIn
               </span>
               <MdArrowOutward
@@ -156,7 +156,7 @@ function Hamburger({ open, onClose }) {
           </div>
 
           <Buttons
-            className="md:self-center self-stretch bg-[#EC157D] md:w-52 md:h-10 h-8 text-[#FFF]"
+            className="md:self-center self-stretch bg-[#EC157D] md:w-52 h-10 text-[#FFF]"
             onKeyDown={handleKeyDown}
             onClick={handleEmailClick}
           >

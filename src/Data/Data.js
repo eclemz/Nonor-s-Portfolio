@@ -37,18 +37,18 @@ export const cardData = [
 export const cardData1 = [
   {
     name: "Chidera Onuma",
-    description: `Chinonye is a skilled UI/UX designer who creates exceptional user experiences and dynamic user flow. She is highly recommended for her creativity, communication, and attention to detail.`,
-    title: "Product Manager at Creatneste.",
+    description: `"Chinonye is a skilled UI/UX designer who creates exceptional user experiences and dynamic user flow. She is highly recommended for her creativity, communication, and attention to detail."`,
+    title: "Product Manager, Creatneste.",
   },
   {
-    name: "Imam",
-    description: `Chinonye is a skilled UI/UX designer who creates exceptional user experiences and dynamic user flow. She is highly recommended for her creativity, communication, and attention to detail`,
-    title: "Programs Manager at Studio3",
+    name: "Imam Bashir Abdulwahab",
+    description: `“You've been a great tutor to the students chinonye.Your class is always so organized and the team is so happy on how perfect the UI/UX class are.”`,
+    title: "Programs manager, Studio3launchpad",
   },
   {
-    name: "Carolyn Seaman",
-    description: `Chinonye is a skilled UI/UX designer who creates exceptional user experiences and dynamic user flow. She is highly recommended for her creativity, communication, and attention to detail`,
-    title: "President at Techwomenng.",
+    name: "Ugochukwu Iweanya",
+    description: `“So happy to be in her class, she is patient, kind and very understanding with sound knowledge of product design.”`,
+    title: "Student at Studio3launchpad",
   },
 ];
 
@@ -315,7 +315,7 @@ As the Designer, I carried out a heuristic evaluation to identify usability is
 
 export const cardData3 = [
   {
-    image: "mine1.png",
+    image: "mine1.svg",
     title: "Norno as a UX Designer",
     quote: `“Designing intuitive, user-centered products that create real impact.”`,
     desc: `With over 3 years of experience in UX design and research, I specialize in turning complex ideas into simple, accessible, and conversion-driven interfaces. My design process is rooted in user research,design system, usability testing, and interaction design, ensuring every decision is purpose-driven.
@@ -323,17 +323,15 @@ export const cardData3 = [
 I’ve worked across  E-commerce, NGOs, Edtech  and Start-ups , where I collaborated closely with Developers, product managers, and stakeholders to ship responsive, high-performing digital products using tools like Figma, Webflow, and Notion.`,
   },
   {
-    image: "mine2.png",
+    image: "mine2.svg",
     title: "Nornor as a UX Tutor",
     quote: `“Empowering the next generation of designers through clarity, community, and curiosity.”`,
     desc: `As a UX tutor , I’ve spent the past 1 year guiding aspiring designers to build strong design foundations, develop creative confidence, and master industry-relevant tools like Figma, Miro, Canva and Notion. My teaching style blends real-world projects with hands-on support which bridges the gap between theory and execution.
 
-Through workshops, bootcamps, and one-on-one mentorships, I’ve helped over 20+ design students (In both Nigeria and Ghana) grasp core topics like design systems, interaction design, responsive UI, and accessibility. I break down complex ideas into digestible steps, ensuring that students design beautiful interfaces also solve meaningful problems through human-centered design.
-
-Whether I’m leading a live prototyping session or reviewing student portfolios, I always encourage open feedback, creative exploration, and continuous iteration.`,
+Through workshops, bootcamps, and one-on-one mentorships, I’ve helped over 20+ design students (In both Nigeria and Ghana) grasp core topics like design systems, interaction design, responsive UI, and accessibility, I always encourage open feedback, creative exploration, and continuous iteration.`,
   },
   {
-    image: "mine.png",
+    image: "mine.svg",
     title: "Nornor as a Brand Strategist",
     quote: `“I help brands speak with clarity, connect with purpose, and grow with intention.”`,
     desc: `As a brand strategist, I work with startups, NGOs, and small businesses to shape strong, memorable brand identities that align with both user needs and business goals. My approach combines design thinking, user experience, and visual storytelling to create brand guidelines and Identity that resonate and convert.

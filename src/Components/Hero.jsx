@@ -27,13 +27,13 @@ function Hero({ showButton = true }) {
 
   const containerRef = useRef(null);
   return (
-    <section className="hero bg-[radial-gradient(61.86%_50%_at_50%_50%,_#D281A7_0%,_#FFF_34.5%)] dark:bg-[radial-gradient(61.86%_50%_at_50%_50%,_#76073B_0%,_#100108_34.5%)] flex flex-col w-full justify-end items-start px-4 pt-[19rem] lg:pb-10 pb-14 md:px-8 lg:px-14  lg:pt-[15rem] md:gap-[0.625rem] gap-5 bg-[#FCFCFC] dark:bg-[#100108]">
-      <span className="text-[#100108] dark:text-[#FCFCFC] font-inter md:text-xl lg:text-2xl text-lg">
+    <section className="hero bg-[radial-gradient(61.86%_50%_at_50%_50%,_#D281A7_0%,_#FFF_34.5%)] dark:bg-[radial-gradient(61.86%_50%_at_50%_50%,_#76073B_0%,_#100108_34.5%)] flex flex-col w-full justify-end items-start px-4 pt-[19rem] lg:pb-20 pb-14 md:px-8 lg:px-14  lg:pt-[15rem] md:gap-[0.625rem] gap-5 bg-[#FCFCFC] dark:bg-[#100108]">
+      <span className="text-[#100108] dark:text-[#FCFCFC] font-inter md:text-base lt:text-base lg:text-lg text-sm">
         Hello, I am Norno.
       </span>
-      <div className="flex flex-col items-start  gap-6 self-stretch md:pb-5">
+      <div className="flex flex-col items-start gap-1 md:gap-2 self-stretch md:pb-4">
         <span
-          className="text-2xl md:text-5xl text-[#100108] font-bold dark:text-[#FCFCFC]"
+          className="text-3xl lt:text-4xl lg:text-5xl text-[#100108] font-bold dark:text-[#FCFCFC]"
           ref={containerRef}
         >
           An Experienced
@@ -44,14 +44,13 @@ function Hero({ showButton = true }) {
           rotationInterval={3000}
           staggerDuration={0.05}
           staggerFrom="center"
-          elementLevelClassName="text-3xl md:text-5xl font-inter font-bold"
+          elementLevelClassName="text-3xl lt:text-4xl lg:text-5xl font-inter font-bold"
         />
         <span
-          className="text-2xl md:text-xl text-[#100108] dark:text-[#FCFCFC]"
+          className="text-lg md:text-xl  font-inter fon text-[#100108] dark:text-[#FCFCFC]"
           ref={containerRef}
         >
-          that Help Brands Boost Engagement & Usability Through <br />{" "}
-          Human-Centered Design
+          I help brands boost engagement through <br /> human centered designs
         </span>
       </div>
       {showButton && (
