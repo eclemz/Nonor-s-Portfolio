@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import Cards from "../Components/Cards";
 import { cardData } from "../Data/Data";
 import SortButton from "../Components/SortButton";
@@ -41,7 +41,7 @@ function Projects({ showSection = false }) {
   };
 
   return (
-    <main className="flex flex-col w-full px-4 md:px-8 py-14 md:py-0 lg:py-0 lg:px-0 pb-14 lg:pb-24 justify-center items-center gap-5 bg-[#FCFCFC] dark:bg-[#100108]">
+    <div className="flex flex-col w-full px-4 md:px-8 py-14 md:py-0 lg:py-0 lg:px-0 pb-14 lg:pb-24 justify-center items-center gap-5 bg-[#FCFCFC] dark:bg-[#100108] mt-10">
       {showSection && (
         <>
           <section className="projectTitle md:hidden flex md:pt-0 justify-between items-center self-stretch lg:py-5 lg:px-14">
@@ -54,7 +54,7 @@ function Projects({ showSection = false }) {
               onChange={setSortBy}
             />
           </section>
-          <section className="hidden projectTitle md:flex flex-col md:pt-0 w-full lg:py-5 lg:px-14">
+          <section className="hidden projectTitle md:flex items-center flex-col md:pt-0 w-full lg:py-5 lg:px-14">
             <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
               Projects
             </span>
@@ -81,7 +81,7 @@ function Projects({ showSection = false }) {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
             w-full gap-10 items-center justify-center 
             md:justify-end md:self-stretch lg:px-14 md:pt-[275px] pt-48 pb-10"
-            whileTap={{ scale: 0.96 }}
+          whileTap={{ scale: 0.96 }}
         >
           <Cards data={filteredData} onCardClick={handleCardClick} />
         </motion.div>
@@ -98,37 +98,8 @@ function Projects({ showSection = false }) {
           </div>
 
           <div
-            className="hidden lg:hidden md:flex w-full items-center 
-            py-10 gap-6 px-[0] self-stretch "
-            role="card list"
-            aria-label="Projects on our shelf"
-          >
-            <Cards
-              data={tabletFirst}
-              onCardClick={handleCardClick}
-              className="md:w-[22.4375rem] md:h-[24.3125rem] flex-1"
-            />
-            <div
-              className="flex md:h-[24.3125rem] w-full flex-col 
-            justify-center md:w-[30%] items-start 
-            gap-6"
-              role="card list"
-              aria-label="Projects on our shelf"
-            >
-              {tabletSecond.map((card, idx) => (
-                <Cards
-                  key={idx}
-                  data={[card]}
-                  onCardClick={handleCardClick}
-                  className="md:h-[11.875rem] md:w-full"
-                />
-              ))}
-            </div>
-          </div>
-
-          <div
-            className="hidden cursor-pointer w-full lg:grid grid-cols-3 gap-y-[4.5rem] 
-             py-5 px-14 gap-6 items-center"
+            className="hidden cursor-pointer w-full md:grid md:grid-cols-2 lg:grid-cols-3 lg:gap-y-[4.5rem] 
+             lg:py-5 lg:px-14 md:py-0 md:px-0 gap-6 items-center"
             role="list"
             aria-label="Projects on our shelf"
           >
@@ -136,7 +107,7 @@ function Projects({ showSection = false }) {
           </div>
         </>
       )}
-    </main>
+    </div>
   );
 }
 

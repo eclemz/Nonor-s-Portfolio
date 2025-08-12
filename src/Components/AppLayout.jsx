@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import Hamburger from "./Hamburger";
 

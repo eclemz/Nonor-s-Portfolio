@@ -1,31 +1,45 @@
+import React from "react";
 import logo from "../Assets/logo.png";
 import logo1 from "../Assets/logo1.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdArrowOutward } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
-import Buttons1 from "./Buttons";
+import { Buttons } from "./Buttons";
 
 function Dashboard({ onHamburgerClick }) {
+  const handleEmailClick = () => {
+    window.location.href =
+      "mailto:chimechinonyelum@gmail.com?subject=Let's%20Work%20Together";
+  };
   return (
-    <section className="dashboard w-full shadow-sm dark:shadow-gray-800 flex flex-col lg:pt-0 md:pt-12 px-4 md:px-8 lg:px-14 lg:py-0 items-start shrink-0 bg-[#FCFCFC] dark:bg-[#100108] fixed top-0 left-0 z-40">
-      <div className="md:hidden flex py-5 justify-between items-center self-stretch">
+    <section className="dashboard w-full shadow-sm dark:shadow-gray-800 flex flex-col lg:pt-0 md:pt-12 md:pb-5 px-4 md:px-8 lg:px-14 lg:py-0 items-start shrink-0 bg-[#FCFCFC] dark:bg-[#100108] fixed top-0 left-0 z-40">
+      <div className="lg:hidden flex py-5 md:py-0 md:gap-2 justify-between items-center self-stretch">
         <div className="flex justify-center items-center gap-2 cursor-pointer">
-          <Link to="/" aria-label="Homepage">
+          <Link
+            to="/"
+            aria-label="Homepage"
+            className="hidden md:flex gap-2 flex-row"
+          >
             <img
               src={logo}
               alt="Chinonye Chime logo"
-              className="hidden dark:block w-[2.8125rem] h-8 shrink-0"
+              className="dark:block hidden lg:block w-[2.8125rem] h-8 shrink-0"
             />
             <img
               src={logo1}
               alt="Chinonye Chime logo"
               className="dark:hidden block w-[2.8125rem] h-8 shrink-0"
             />
+            <span className="flex justify-center items-center shrink-0 font-inter text-xl font-[500] text-[#100108] dark:text-[#FCFCFC]">
+              Chinonye Chime
+            </span>
           </Link>
-          <span className="flex justify-center items-center shrink-0 font-inter text-xl font-[500] text-[#100108] dark:text-[#FCFCFC]">
-            Chinonye Chime
-          </span>
+          <Link to="/" aria-label="Homepage" className="md:hidden block">
+            <span className="flex justify-center items-center shrink-0 font-inter text-xl font-[500] text-[#100108] dark:text-[#FCFCFC]">
+              Chinonye Chime
+            </span>
+          </Link>
         </div>
 
         <button
@@ -41,7 +55,7 @@ function Dashboard({ onHamburgerClick }) {
         </button>
       </div>
 
-      <div className="hidden w-full  md:flex  justify-between items-center lg:self-stretch">
+      <div className="lt:hidden md:hidden hidden w-full lg:flex justify-between items-center lg:self-stretch">
         <Link
           to="/"
           className="flex items-center gap-[0.5rem]"
@@ -62,30 +76,6 @@ function Dashboard({ onHamburgerClick }) {
           </span>
         </Link>
         <div className="flex lg:py-5 items-center self-stretch md:gap-2 gap-8">
-          <div className="flex flex-col justify-center items-center gap-[0.5rem] lg:py-3 lg:px-4">
-            <NavLink
-              to="/projects"
-              className={({ isActive }) =>
-                `group font-inter cursor-pointer lg:text-base md:text-sm font-[400] text-[#100108] dark:text-[#FCFCFC] flex flex-col items-center ${
-                  isActive ? "font-bold" : ""
-                }`
-              }
-              aria-current={({ isActive }) => (isActive ? "page" : undefined)}
-            >
-              {({ isActive }) => (
-                <>
-                  Project
-                  <hr
-                    className={`mt-1 h-[0.125rem] w-16 rounded bg-[#100108] dark:bg-[#FCFCFC] border-0 transition-all duration-300 ${
-                      isActive ? "opacity-100" && "h-[3px]" : "opacity-0 group-hover:opacity-40"
-                    } 
-                    `}
-                  />
-                </>
-              )}
-            </NavLink>
-          </div>
-          {/* About Link */}
           <div className="flex flex-col justify-center items-center gap-2 lg:py-3 lg:px-[1rem]">
             <NavLink
               to="/about"
@@ -101,8 +91,35 @@ function Dashboard({ onHamburgerClick }) {
                   About
                   <hr
                     className={`mt-1 h-[0.125rem] w-14 rounded bg-[#100108] dark:bg-[#FCFCFC] border-0 transition-all duration-300 ${
-                      isActive ? "opacity-100" && "h-[3px]" : "opacity-0 group-hover:opacity-40"
+                      isActive
+                        ? "opacity-100" && "h-[3px]"
+                        : "opacity-0 group-hover:opacity-40"
                     }`}
+                  />
+                </>
+              )}
+            </NavLink>
+          </div>
+          <div className="flex flex-col justify-center items-center gap-[0.5rem] lg:py-3 lg:px-4">
+            <NavLink
+              to="/projects"
+              className={({ isActive }) =>
+                `group font-inter cursor-pointer lg:text-base md:text-sm font-[400] text-[#100108] dark:text-[#FCFCFC] flex flex-col items-center ${
+                  isActive ? "font-bold" : ""
+                }`
+              }
+              aria-current={({ isActive }) => (isActive ? "page" : undefined)}
+            >
+              {({ isActive }) => (
+                <>
+                  Project
+                  <hr
+                    className={`mt-1 h-[0.125rem] w-16 rounded bg-[#100108] dark:bg-[#FCFCFC] border-0 transition-all duration-300 ${
+                      isActive
+                        ? "opacity-100" && "h-[3px]"
+                        : "opacity-0 group-hover:opacity-40"
+                    } 
+                    `}
                   />
                 </>
               )}
@@ -126,9 +143,12 @@ function Dashboard({ onHamburgerClick }) {
               aria-hidden="true"
             />
           </a>
-          <Buttons1 className="md:self-start self-stretch">
-           Let’s work together
-          </Buttons1>
+          <Buttons
+            className="md:self-auto self-stretch bg-[#EC157D] md:h-12 h-10 text-[#FFF] "
+            onClick={handleEmailClick}
+          >
+            Let’s work together
+          </Buttons>
         </div>
       </div>
     </section>

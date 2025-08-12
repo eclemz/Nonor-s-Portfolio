@@ -1,8 +1,8 @@
+import React from "react";
 import { MdArrowOutward } from "react-icons/md";
 import logo from "../Assets/logo.png";
 import logo1 from "../Assets/logo1.png";
 import { Link } from "react-router-dom";
-
 
 function Footer() {
   return (
@@ -11,26 +11,28 @@ function Footer() {
       role="contentinfo"
     >
       <div className="w-full flex flex-col lg:flex-row items-start self-stretch gap-[2.375rem] lg:justify-between lg:items-start lg:gap-0 lg:py-10 lg:px-14 py-[2.5rem] ">
-
         <div className="hidden lg:flex justify-center items-center gap-2">
-                  {/* <Link to="/" aria-label="Homepage"> */}
-                    <img
-                      src={logo}
-                      alt="Chinonye Chime logo"
-                      className="hidden dark:block w-[2.8125rem] h-8 shrink-0"
-                    />
-                    <img
-                      src={logo1}
-                      alt="Chinonye Chime logo"
-                      className="dark:hidden block w-[2.8125rem] h-8 shrink-0"
-                    />
-                  {/* </Link> */}
-                  <span className="flex justify-center shrink-0 font-inter text-xl font-[500] text-[#100108] dark:text-[#FCFCFC]">
-                    Chinonye Chime
-                  </span>
-                </div>
+          {/* <Link to="/" aria-label="Homepage"> */}
+          <img
+            src={logo}
+            alt="Chinonye Chime logo"
+            className="hidden dark:block w-[2.8125rem] h-8 shrink-0"
+          />
+          <img
+            src={logo1}
+            alt="Chinonye Chime logo"
+            className="dark:hidden block w-[2.8125rem] h-8 shrink-0"
+          />
+          {/* </Link> */}
+          <span className="flex justify-center shrink-0 font-inter text-xl font-[500] text-[#100108] dark:text-[#FCFCFC]">
+            Chinonye Chime
+          </span>
+        </div>
 
-        <nav className="flex flex-col items-start gap-3" aria-label="Main links">
+        <nav
+          className="flex flex-col items-start gap-3"
+          aria-label="Main links"
+        >
           <h3 className="font-inter lg:text-base text-xs lg:font-[700] items-start font-[600] self-stretch text-[#9D979A]">
             MAIN LINKS
           </h3>
@@ -52,7 +54,10 @@ function Footer() {
           </ul>
         </nav>
 
-        <nav className="flex flex-col items-start gap-3" aria-label="Quick links">
+        <nav
+          className="flex flex-col items-start gap-3"
+          aria-label="Quick links"
+        >
           <h3 className="font-inter lg:text-base text-xs lg:font-[700] font-[600] self-stretch text-[#9D979A]">
             QUICK LINKS
           </h3>
@@ -94,7 +99,7 @@ function Footer() {
                 aria-label="Download Resume"
               >
                 <span className="font-inter lg:text-base text-xs lg:font-[400] font-[600] text-[#100108] dark:text-[#FCFCFC]">
-                 LinkedIn
+                  LinkedIn
                 </span>
                 <MdArrowOutward
                   className="opacity-0 group-hover:opacity-100 h-5 w-5 text-[#100108] dark:text-[#FCFCFC] transition-opacity duration-300"
@@ -107,7 +112,7 @@ function Footer() {
       </div>
 
       <div className="flex flex-col py-4 lg:px-14 md:px-1 px-0 lg:py-14 self-stretch lg:justify-center items-center gap-4">
-        <hr className="w-full border-0 border-t border-gray-300 dark:border-gray-600"/>
+        <hr className="w-full border-0 border-t border-gray-300 dark:border-gray-600" />
         <div className="flex justify-end items-center gap-2">
           <span className="font-inter text-base font-[300] text-[#100108] dark:text-[#FCFCFC]">
             &copy;

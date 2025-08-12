@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { GiSettingsKnobs } from "react-icons/gi";
 
-
 function SortButton({ options, onChange, value }) {
   const [open, setOpen] = useState(false);
-  const [focusIdx, setFocusIdx] = useState(-1); 
+  const [focusIdx, setFocusIdx] = useState(-1);
   const buttonRef = useRef();
   const listRef = useRef();
 
@@ -20,12 +19,11 @@ function SortButton({ options, onChange, value }) {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open]);
 
-  
   useEffect(() => {
     if (!open) return;
     const handleKeyDown = (e) => {
       if (!open) return;
-      const total = options.length + 1; 
+      const total = options.length + 1;
       if (e.key === "ArrowDown") {
         e.preventDefault();
         setFocusIdx((prev) => (prev + 1) % total);
@@ -53,10 +51,9 @@ function SortButton({ options, onChange, value }) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [open, focusIdx, onChange, options]);
 
-  const current = options.find(opt => opt.value === value);
+  const current = options.find((opt) => opt.value === value);
   const label = current ? current.label : "All";
 
-  
   const getOptionId = (idx) => `sort-option-${idx}`;
 
   return (
@@ -72,7 +69,9 @@ function SortButton({ options, onChange, value }) {
         aria-expanded={open}
         aria-controls="sort-dropdown-list"
         aria-label="Filter options"
-        aria-activedescendant={open && focusIdx !== -1 ? getOptionId(focusIdx) : undefined}
+        aria-activedescendant={
+          open && focusIdx !== -1 ? getOptionId(focusIdx) : undefined
+        }
       >
         <span className="md:hidden block text-base font-[500] md:font-[400] dark:text-white text-[#100108] font-inter">
           Sort:
@@ -85,11 +84,11 @@ function SortButton({ options, onChange, value }) {
             className={`md:hidden block h-[1.5rem] w-[1.5rem] ${
               open ? "rotate-180" : "rotate-0"
             }`}
-            aria-hidden="true" 
+            aria-hidden="true"
           />
           <GiSettingsKnobs
             className={`hidden md:block h-[1.5rem] w-[1.5rem]`}
-            aria-hidden="true" 
+            aria-hidden="true"
           />
         </span>
       </button>
@@ -109,9 +108,7 @@ function SortButton({ options, onChange, value }) {
                    value === ""
                      ? "dark:bg-gray-300 bg-[#13070C] dark:text-[#13070C] text-[#F9F9F9] font-semibold"
                      : "dark:bg-[#13070C] bg-gray-300 text-[#13070C] dark:text-[#F9F9F9]"
-                 } ${
-              focusIdx === 0 ? "ring-2 ring-blue-500" : ""
-            }`}
+                 } ${focusIdx === 0 ? "ring-2 ring-blue-500" : ""}`}
             onClick={() => {
               setOpen(false);
               onChange("");

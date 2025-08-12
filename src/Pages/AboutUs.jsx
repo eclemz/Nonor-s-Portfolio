@@ -1,10 +1,10 @@
 import img2 from "../Assets/MobileLogos.png";
-import img3 from "../Assets/mobileLogo1.png";
 import img4 from "../Assets/mobileLogo2.png";
 import img5 from "../Assets/mobileLogo3.png";
 import { cardData3 } from "../Data/Data.js";
-import { motion, useSpring, useScroll } from "motion/react"
-"use client"
+import { motion, useSpring, useScroll } from "motion/react";
+("use client");
+import React, { useEffect } from "react";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -25,23 +25,20 @@ const pageTransition = {
 };
 
 function AboutUs({ data = cardData3 }) {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
-   const { scrollYProgress } = useScroll()
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001,
-    })
   return (
-
-     <motion.main
+    <motion.main
       initial="initial"
       animate="animate"
       exit="exit"
       variants={pageTransition}
     >
-
-      
       <section className="flex w-full flex-col items-start gap-10 pt-36 pb-28 lt:px-0 md:px-8 px-4 bg-[#FCFCFC] dark:bg-[#100108]">
         {/* About Section */}
         <motion.section
@@ -55,18 +52,19 @@ function AboutUs({ data = cardData3 }) {
             <h1 className=" text-3xl font-bold font-inter  ">About</h1>
           </header>
           <motion.div
-                id="scroll-indicator"
-                style={{
-                    scaleX,
-                    position: "fixed",
-                    top: 90,
-                    left: 0,
-                    right: 0,
-                    height: 10,
-                    originX: 0,
-                    backgroundColor: "#ff0088",
-                }}
-            />
+            className="hidden md:block "
+            id="scroll-indicator"
+            style={{
+              scaleX,
+              position: "fixed",
+              top: 90,
+              left: 0,
+              right: 0,
+              height: 10,
+              originX: 0,
+              backgroundColor: "#ff0088",
+            }}
+          />
           {data.map((card, index) => (
             <motion.article
               key={card.id || card.title || index}
@@ -74,7 +72,7 @@ function AboutUs({ data = cardData3 }) {
               whileInView="visible"
               viewport={{ once: false, amount: 0.2 }}
               variants={fadeInUp}
-              className={`flex flex-col md:flex-row items-start self-stretch gap-10 justify-between
+              className={`flex flex-col md:flex-row items-start self-stretch gap-10 md:gap-7 lg:gap-10 justify-between
             ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
               aria-labelledby={`about-section-title-${index}`}
             >
@@ -88,22 +86,22 @@ function AboutUs({ data = cardData3 }) {
                   type="image/webp"
                 />
                 <img
-                  className="flex self-center h-[404px] flex-1 rounded-2xl border-[#FCFCFC] border-[0.1875rem]"
+                  className="flex self-center lg:h-[25.5rem] lg:w-[24rem] md:h-[24rem] md:w-[20rem] h-[26rem] w-[24.8rem] flex-1 rounded-2xl border-[#FCFCFC] border-[0.1875rem]"
                   src={`/optimized/${card.image}`}
                   alt={card.title ? card.title : "About section image"}
                   loading="lazy"
                 />
               </picture>
-              <div className="flex flex-col flex-1 items-start self-stretch py-[1.25rem]">
+              <div className="flex flex-col flex-1 items-start self-stretch lg:py-[1.25rem]">
                 <h2
-                  className="font-inter text-[1.25rem] font-[700] text-[#100108] dark:text-[#FCFCFC]"
+                  className="font-inter text-xl font-[700] text-[#100108] dark:text-[#FCFCFC]"
                   id={`about-section-title-${index}`}
                 >
                   {card.title}
                 </h2>
                 <p className="italic py-4">{card.quote}</p>
                 <span
-                  className="flex font-inter self-stretch text-base font-[400] text-[#100108] dark:text-[#FCFCFC] preserve-whitespace"
+                  className="flex font-inter self-stretch text-base lg:text-lg font-[400] text-[#100108] dark:text-[#FCFCFC] preserve-whitespace"
                   style={{ whiteSpace: "pre-line" }}
                 >
                   {card.desc}
@@ -143,8 +141,8 @@ function AboutUs({ data = cardData3 }) {
             >
               <div className="flex items-center self-stretch gap-4">
                 <img
-                  src={img2}
-                  alt="SignatureTV logo"
+                  src="./TechWomenlogo1.svg"
+                  alt="TechWomen logo"
                   className="w-[3.75rem] h-[3.75rem] rounded-lg"
                 />
                 <div className="flex flex-col justify-center items-start self-stretch gap-[1rem] flex-1">
@@ -154,7 +152,7 @@ function AboutUs({ data = cardData3 }) {
                         Ux Designer
                       </span>
                       <span className="font-inter text-[1.rem] font-[400] text-[#9D979A] self-stretch">
-                        SignatureTV
+                        TechWomen Nigeria
                       </span>
                     </div>
                     <span className="font-inter text-[1rem] font-[400] text-[#9D979A]">
@@ -163,10 +161,8 @@ function AboutUs({ data = cardData3 }) {
                   </div>
                 </div>
               </div>
-              <span className="flex flex-col items-start font-inter text-[#100108] dark:text-[#FCFCFC] text-[1rem] font-[400]">
-                Thriveagric
-              </span>
             </motion.li>
+
             <motion.li
               key="exp-2"
               variants={fadeInUp}
@@ -177,41 +173,7 @@ function AboutUs({ data = cardData3 }) {
             >
               <div className="flex items-center self-stretch gap-[1rem]">
                 <img
-                  src={img3}
-                  alt="EME Foundation logo"
-                  className="w-[3.75rem] h-[3.75rem] rounded-[0.5rem]"
-                />
-                <div className="flex flex-col justify-center items-start self-stretch gap-[1rem] flex-1">
-                  <div className="flex justify-between items-center self-stretch">
-                    <div className="flex flex-col items-start gap-[0.5rem]">
-                      <span className="font-inter text-[1.rem] font-[700] text-[#100108] dark:text-[#FCFCFC]">
-                        Volunteer UI Designer
-                      </span>
-                      <span className="font-inter text-[1.rem] font-[400] text-[#9D979A] self-stretch">
-                        EME Foundation
-                      </span>
-                    </div>
-                    <span className="font-inter text-[1rem] font-[400] text-[#9D979A]">
-                      Jul, 2024-Present
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <span className="flex flex-col items-start font-inter text-[#100108] dark:text-[#FCFCFC] text-[1rem] font-[400]">
-                Thriveagric
-              </span>
-            </motion.li>
-            <motion.li
-              key="exp-3"
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.2 }}
-              className="flex flex-col justify-center items-start self-stretch gap-3"
-            >
-              <div className="flex items-center self-stretch gap-[1rem]">
-                <img
-                  src={img4}
+                  src="./thrivelogo.svg"
                   alt="Thriveagric logo"
                   className="w-[3.75rem] h-[3.75rem] rounded-[0.5rem]"
                 />
@@ -231,9 +193,37 @@ function AboutUs({ data = cardData3 }) {
                   </div>
                 </div>
               </div>
-              <span className="flex flex-col items-start font-inter text-[#100108] dark:text-[#FCFCFC] text-[1rem] font-[400]">
-                Thriveagric
-              </span>
+            </motion.li>
+            <motion.li
+              key="exp-3"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              className="flex flex-col justify-center items-start self-stretch gap-3"
+            >
+              <div className="flex items-center self-stretch gap-[1rem]">
+                <img
+                  src="./studio4852logo.svg"
+                  alt="Studio4852 logo"
+                  className="w-[3.75rem] h-[3.75rem] rounded-[0.5rem]"
+                />
+                <div className="flex flex-col justify-center items-start self-stretch gap-[1rem] flex-1">
+                  <div className="flex justify-between items-center self-stretch">
+                    <div className="flex flex-col items-start gap-[0.5rem]">
+                      <span className="font-inter text-[1.rem] font-[700] text-[#100108] dark:text-[#FCFCFC]">
+                        Ux Designer
+                      </span>
+                      <span className="font-inter text-[1.rem] font-[400] text-[#9D979A] self-stretch">
+                        Studio4852
+                      </span>
+                    </div>
+                    <span className="font-inter text-[1rem] font-[400] text-[#9D979A]">
+                      Jul, 2024-Present
+                    </span>
+                  </div>
+                </div>
+              </div>
             </motion.li>
             <motion.li
               key="exp-4"
@@ -245,7 +235,38 @@ function AboutUs({ data = cardData3 }) {
             >
               <div className="flex items-center self-stretch gap-[1rem]">
                 <img
-                  src={img5}
+                  src="./studio3logo1.svg"
+                  alt="Studio3 logo"
+                  className="w-[3.75rem] h-[3.75rem] rounded-[0.5rem]"
+                />
+                <div className="flex flex-col justify-center items-start self-stretch gap-[1rem] flex-1">
+                  <div className="flex justify-between items-center self-stretch">
+                    <div className="flex flex-col items-start gap-[0.5rem]">
+                      <span className="font-inter text-[1.rem] font-[700] text-[#100108] dark:text-[#FCFCFC]">
+                        Ux Designer
+                      </span>
+                      <span className="font-inter text-[1.rem] font-[400] text-[#9D979A] self-stretch">
+                        Studio3lunchpad
+                      </span>
+                    </div>
+                    <span className="font-inter text-[1rem] font-[400] text-[#9D979A]">
+                      Jul, 2024-Present
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.li>
+            <motion.li
+              key="exp-5"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              className="flex flex-col justify-center items-start self-stretch gap-3"
+            >
+              <div className="flex items-center self-stretch gap-[1rem]">
+                <img
+                  src="./SSDAlogo.svg"
                   alt="SSDA logo"
                   className="w-[3.75rem] h-[3.75rem] rounded-[0.5rem]"
                 />
@@ -265,9 +286,6 @@ function AboutUs({ data = cardData3 }) {
                   </div>
                 </div>
               </div>
-              <span className="flex flex-col items-start font-inter text-[#100108] dark:text-[#FCFCFC] text-[1rem] font-[400]">
-                Thriveagric
-              </span>
             </motion.li>
           </ul>
         </motion.section>

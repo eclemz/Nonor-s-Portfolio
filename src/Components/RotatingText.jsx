@@ -1,4 +1,6 @@
-"use client";
+import React from "react";
+
+("use client");
 
 import {
   forwardRef,
@@ -19,9 +21,9 @@ const RotatingText = forwardRef((props, ref) => {
     texts,
     transition = { type: "spring", damping: 25, stiffness: 300 },
     initial = { y: "20%", opacity: 10 },
-    animate = { y: 0, opacity: 1},
+    animate = { y: 0, opacity: 1 },
     // exit = { y: "-120%", opacity: 0 },
-    exit={ opacity: 0, y: -10 },
+    exit = { opacity: 0, y: -10 },
     animatePresenceMode = "wait",
     animatePresenceInitial = false,
     rotationInterval = 2000,
@@ -158,8 +160,7 @@ const RotatingText = forwardRef((props, ref) => {
     const intervalId = setInterval(next, rotationInterval);
     return () => clearInterval(intervalId);
   }, [next, rotationInterval, auto]);
-const currentColor = colorMap[texts[currentTextIndex]];
-
+  const currentColor = colorMap[texts[currentTextIndex]];
 
   return (
     <motion.span
@@ -173,7 +174,10 @@ const currentColor = colorMap[texts[currentTextIndex]];
       style={{ color: currentColor }}
     >
       <span className="sr-only">{texts[currentTextIndex]}</span>
-      <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
+      <AnimatePresence
+        mode={animatePresenceMode}
+        initial={animatePresenceInitial}
+      >
         <motion.span
           key={currentTextIndex}
           className={cn(
@@ -190,7 +194,10 @@ const currentColor = colorMap[texts[currentTextIndex]];
               .slice(0, wordIndex)
               .reduce((sum, word) => sum + word.characters.length, 0);
             return (
-              <span key={wordIndex} className={cn("inline-flex", splitLevelClassName)}>
+              <span
+                key={wordIndex}
+                className={cn("inline-flex", splitLevelClassName)}
+              >
                 {wordObj.characters.map((char, charIndex) => (
                   <motion.span
                     key={charIndex}
@@ -201,7 +208,10 @@ const currentColor = colorMap[texts[currentTextIndex]];
                       ...transition,
                       delay: getStaggerDelay(
                         previousCharsCount + charIndex,
-                        array.reduce((sum, word) => sum + word.characters.length, 0)
+                        array.reduce(
+                          (sum, word) => sum + word.characters.length,
+                          0
+                        )
                       ),
                     }}
                     className={cn("inline-block", elementLevelClassName)}
@@ -209,7 +219,9 @@ const currentColor = colorMap[texts[currentTextIndex]];
                     {char}
                   </motion.span>
                 ))}
-                {wordObj.needsSpace && <span className="whitespace-pre"> </span>}
+                {wordObj.needsSpace && (
+                  <span className="whitespace-pre"> </span>
+                )}
               </span>
             );
           })}

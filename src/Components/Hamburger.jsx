@@ -1,12 +1,12 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { MdArrowOutward } from "react-icons/md";
-import ThemeToggle from './ThemeToggle';
-
+import ThemeToggle from "./ThemeToggle";
+import { Buttons } from "./Buttons";
 
 function Hamburger({ open, onClose }) {
   const menuRef = useRef();
-  const firstLinkRef = useRef(); 
+  const firstLinkRef = useRef();
 
   // Close menu on outside click
   useEffect(() => {
@@ -19,6 +19,18 @@ function Hamburger({ open, onClose }) {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open, onClose]);
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      yourClickHandler();
+    }
+  }
+
+  const handleEmailClick = () => {
+    window.location.href =
+      "mailto:chimechinonyelum@gmail.com?subject=Let's%20Work%20Together";
+  };
 
   // Prevent background scrolling when open
   useEffect(() => {
@@ -61,7 +73,7 @@ function Hamburger({ open, onClose }) {
         className="fixed right-0 top-0 bg-white/60 dark:bg-[rgba(16,1,8,0.8)] h-full w-full z-40 cursor-default"
         onClick={onClose}
         aria-label="Close menu"
-        tabIndex={0} 
+        tabIndex={0}
         style={{ outline: "none" }}
       />
       {/* Hamburger Panel */}
@@ -72,7 +84,7 @@ function Hamburger({ open, onClose }) {
           height: "50vh",
           transform: open ? "translateY(0%)" : "translateY(-100%)",
         }}
-        role="dialog" 
+        role="dialog"
         aria-modal="true"
         aria-label="Mobile menu"
       >
@@ -135,23 +147,21 @@ function Hamburger({ open, onClose }) {
               </span>
               <MdArrowOutward
                 className="h-5 w-5 text-[#100108] dark:text-[#FCFCFC]"
-                aria-hidden="true" 
+                aria-hidden="true"
               />
             </a>
           </div>
           <div className="flex flex-col py-4 px-6 justify-center items-center gap-2 self-stretch">
             <ThemeToggle />
           </div>
-          <button
-            className="flex justify-center items-center gap-1 py-3 px-[1rem] self-stretch rounded-lg bg-[#EC157D]"
-            type="button"
-            aria-label="Get in touch"
-            tabIndex={0}
+
+          <Buttons
+            className="md:self-center self-stretch bg-[#EC157D] md:w-52 md:h-10 h-8 text-[#FFF]"
+            onKeyDown={handleKeyDown}
+            onClick={handleEmailClick}
           >
-            <span className="text-[#FFFFFF] font-['Helvetica Neue'] text-3 md:text-base font-[500]">
-              Get-in-touch
-            </span>
-          </button>
+            Get-in-touch
+          </Buttons>
         </nav>
       </aside>
     </>

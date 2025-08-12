@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef, useEffect } from "react";
+import React, { forwardRef, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 function useAnimationFrame(callback) {
@@ -65,9 +65,10 @@ const VariableProximity = forwardRef((props, ref) => {
   const parsedSettings = useMemo(() => {
     const parseSettings = (settingsStr) =>
       new Map(
-        settingsStr.split(",")
-          .map(s => s.trim())
-          .map(s => {
+        settingsStr
+          .split(",")
+          .map((s) => s.trim())
+          .map((s) => {
             const [name, value] = s.split(" ");
             return [name.replace(/['"]/g, ""), parseFloat(value)];
           })
@@ -89,10 +90,13 @@ const VariableProximity = forwardRef((props, ref) => {
   const calculateFalloff = (distance) => {
     const norm = Math.min(Math.max(1 - distance / radius, 0), 1);
     switch (falloff) {
-      case "exponential": return norm ** 2;
-      case "gaussian": return Math.exp(-((distance / (radius / 2)) ** 2) / 2);
+      case "exponential":
+        return norm ** 2;
+      case "gaussian":
+        return Math.exp(-((distance / (radius / 2)) ** 2) / 2);
       case "linear":
-      default: return norm;
+      default:
+        return norm;
     }
   };
 
@@ -128,7 +132,8 @@ const VariableProximity = forwardRef((props, ref) => {
       const falloffValue = calculateFalloff(distance);
       const newSettings = parsedSettings
         .map(({ axis, fromValue, toValue }) => {
-          const interpolatedValue = fromValue + (toValue - fromValue) * falloffValue;
+          const interpolatedValue =
+            fromValue + (toValue - fromValue) * falloffValue;
           return `'${axis}' ${interpolatedValue}`;
         })
         .join(", ");
@@ -154,38 +159,41 @@ const VariableProximity = forwardRef((props, ref) => {
       {...restProps}
     >
       {lines.map((line, lineIndex) => (
-  <div key={lineIndex} className="w-full">
-    {line.split(" ").map((word, wordIndex) => {
-      const currentWordIndex = lineIndex + "-" + wordIndex;
-      return (
-        <span key={currentWordIndex} className="inline-block whitespace-nowrap">
-          {word.split("").map((letter, i) => {
-            const currentLetterIndex = letterIndex++;
+        <div key={lineIndex} className="w-full">
+          {line.split(" ").map((word, wordIndex) => {
+            const currentWordIndex = lineIndex + "-" + wordIndex;
             return (
-              <motion.span
-                key={currentLetterIndex}
-                ref={(el) => {
-                  letterRefs.current[currentLetterIndex] = el;
-                }}
-                style={{
-                  display: "inline-block",
-                  fontVariationSettings:
-                    interpolatedSettingsRef.current[currentLetterIndex],
-                }}
-                aria-hidden="true"
+              <span
+                key={currentWordIndex}
+                className="inline-block whitespace-nowrap"
               >
-                {letter}
-              </motion.span>
+                {word.split("").map((letter, i) => {
+                  const currentLetterIndex = letterIndex++;
+                  return (
+                    <motion.span
+                      key={currentLetterIndex}
+                      ref={(el) => {
+                        letterRefs.current[currentLetterIndex] = el;
+                      }}
+                      style={{
+                        display: "inline-block",
+                        fontVariationSettings:
+                          interpolatedSettingsRef.current[currentLetterIndex],
+                      }}
+                      aria-hidden="true"
+                    >
+                      {letter}
+                    </motion.span>
+                  );
+                })}
+                {wordIndex < line.split(" ").length - 1 && (
+                  <span className="inline-block">&nbsp;</span>
+                )}
+              </span>
             );
           })}
-          {wordIndex < line.split(" ").length - 1 && (
-            <span className="inline-block">&nbsp;</span>
-          )}
-        </span>
-      );
-    })}
-  </div>
-))}
+        </div>
+      ))}
       <span className="sr-only">{label}</span>
     </span>
   );

@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdWbSunny, MdDarkMode } from "react-icons/md";
-
 
 function ThemeToggle() {
   const [theme, setTheme] = useState(
@@ -27,7 +26,7 @@ function ThemeToggle() {
       type="button"
       aria-label={
         theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
-      } 
+      }
       onClick={toggleTheme}
       className={`
         w-14 h-8 rounded-[32px] border-0 flex justify-start items-center p-1 transition-all duration-300
@@ -50,7 +49,7 @@ function ThemeToggle() {
         ) : (
           <MdDarkMode
             className="text-[#100108] w-4 h-4 rounded-full bg-[#FFF] text-lg"
-            aria-hidden="true" 
+            aria-hidden="true"
           />
         )}
       </span>
