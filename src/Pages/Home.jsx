@@ -9,7 +9,9 @@ function Home() {
     <>
       <Hero />
       <Marquee />
-      <Projects showSection={true} />
+      <section className="-mt-16">
+        <Projects showSection={true} />
+      </section>
       {/* <BlogSection /> */}
     </>
   );

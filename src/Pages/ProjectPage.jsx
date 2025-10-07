@@ -286,8 +286,8 @@ function ProjectPage() {
       </div>
 
       {/* Sidebar and unified layout */}
-      <div className="hidden md:flex lt:pl-16 lg:pl-32 flex-row gap-7 bg-white dark:bg-[#100108] ">
-        <div className="hidden lg:flex w-full flex-col gap-2 fixed left-0 py-3 px-14 top-[5.8125rem] z-30 items-start bg-inherit">
+      <section className="hidden md:flex lt:pl-16 lg:pl-32 flex-row gap-7 bg-white dark:bg-[#100108] ">
+        <div className="hidden lg:flex w-full flex-col gap-2 fixed left-0 py-3 px-14 top-[5rem] z-30 items-start bg-inherit">
           <span className="font-inter text-2xl lg:text-2xl font-bold text-black dark:text-[#FCFCFC]">
             {displayName}
           </span>
@@ -332,7 +332,7 @@ function ProjectPage() {
         </aside>
 
         {/* Unified layout for all screen sizes */}
-        <div className="flex flex-col lg:pt-[9.5rem] lt:px-16 lg:px-[120px] bg-white dark:bg-[#100108] gap-16">
+        <div className="flex flex-col lg:pt-[7rem] lt:px-16 lg:px-[120px] bg-white dark:bg-[#100108] gap-16">
           {/* Overview (full width) */}
           {overview && (
             <article
@@ -436,9 +436,9 @@ function ProjectPage() {
             )}
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="sticky bottom-0 left-2 z-40 lg:pl-32 items-start gap-7 self-stretch w-full  ">
+      <section className="sticky bottom-0 left-2 z-30 lg:pl-32 items-start gap-7 self-stretch w-full  ">
         <div className="flex flex-col w-full md:flex-row justify-between items-start self-stretch md:py-4  px-0 md:px-0 lt:px-[4.5rem] lg:px-56 gap-4">
           {prevProject && (
             <Buttons1
@@ -457,7 +457,7 @@ function ProjectPage() {
             </Buttons>
           )}
         </div>
-      </div>
+      </section>
     </main>
   );
 }

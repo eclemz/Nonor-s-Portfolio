@@ -2,30 +2,14 @@ import React from "react";
 
 function CategoryBtn({ categories, activeCategory, onCategoryChange }) {
   return (
-    <nav aria-label="Category navigation">
-      <ul className=" flex self-start justify-between items-start py-3 w-full">
-        <li className="group">
-          <button
-            className={`flex flex-col justify-center items-center py-3 px-4 gap-2 transition-all duration-700 ${
-              activeCategory === "All"
-                ? "text-inherit border-b-2 border-black dark:border-white"
-                : "text-[#100108] dark:text-[#FCFCFC] border-b-2 group-hover:border-black/40 dark:group-hover:border-b-white/40 border-transparent"
-            }`}
-            onClick={() => onCategoryChange("All")}
-            aria-pressed={activeCategory === "All"}
-            aria-current={activeCategory === "All" ? "page" : undefined}
-            type="button"
-          >
-            <span className="font-inter text-base font-bold">All</span>
-          </button>
-        </li>
-
+    <nav aria-label="Category navigation" className="w-[50%]">
+      <ul className="flex self-start justify-between items-start py-3 w-full">
         {categories.map((category) => (
           <li key={category} className="group">
             <button
-              className={`flex flex-col justify-center items-center py-3 px-4 gap-2 transition-all duration-700 ${
+              className={`flex flex-col justify-center items-center my-3 px-4 gap-2 transition-all duration-700 ${
                 activeCategory === category
-                  ? "text-inherit border-b-2 border-black dark:border-white"
+                  ? "border-b-2 border-[#EC157D] font-bold text-[#EC157D]"
                   : "text-[#100108] dark:text-[#FCFCFC] border-b-2 group-hover:border-b-black/40 dark:group-hover:border-b-white/40 border-transparent"
               }`}
               onClick={() => onCategoryChange(category)}
@@ -33,7 +17,9 @@ function CategoryBtn({ categories, activeCategory, onCategoryChange }) {
               aria-current={activeCategory === category ? "page" : undefined}
               type="button"
             >
-              <span className="font-inter text-base font-bold">{category}</span>
+              <span className="font-inter lg:text-base md:text-sm">
+                {category}
+              </span>
             </button>
           </li>
         ))}
@@ -41,5 +27,4 @@ function CategoryBtn({ categories, activeCategory, onCategoryChange }) {
     </nav>
   );
 }
-
 export default CategoryBtn;

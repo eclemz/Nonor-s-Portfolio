@@ -5,162 +5,133 @@ import ThemeToggle from "./ThemeToggle";
 import { Buttons } from "./Buttons";
 
 function Hamburger({ open, onClose }) {
-  const menuRef = useRef();
-  const firstLinkRef = useRef();
+  const menuRef = useRef(null);
+  const firstLinkRef = useRef(null);
 
-  // Close menu on outside click
+  // Close menu when clicking outside
   useEffect(() => {
     if (!open) return;
-    const handleClick = (e) => {
+    const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         onClose();
       }
     };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open, onClose]);
 
-  function handleKeyDown(e) {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      yourClickHandler();
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => (document.body.style.overflow = "");
+  }, [open]);
+
+  // Focus management + Escape key handler
+  useEffect(() => {
+    if (open && firstLinkRef.current) {
+      firstLinkRef.current.focus();
     }
-  }
+    const handleEscape = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [open, onClose]);
 
   const handleEmailClick = () => {
     window.location.href =
       "mailto:chimechinonyelum@gmail.com?subject=Let's%20Work%20Together";
   };
 
-  // Prevent background scrolling when open
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+  const handleOverlayKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClose();
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  //Set focus to first menu item when opened, handle Escape key
-  useEffect(() => {
-    if (open && firstLinkRef.current) {
-      firstLinkRef.current.focus();
-    }
-    if (!open) return;
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open, onClose]);
-
-  if (!open) return null;
+  };
 
   const handleLinkClick = () => {
     if (onClose) onClose();
   };
 
+  if (!open) return null;
+
   return (
     <>
-      {/* Overlay as button for accessibility, covers page and can be focused/clicked/activated by keyboard */}
+      {/* ===== Overlay (click or keyboard accessible) ===== */}
       <button
         type="button"
-        className="fixed right-0 top-0 bg-white/60 dark:bg-[rgba(16,1,8,0.8)] h-full w-full z-40 cursor-default"
+        className="fixed inset-0 bg-white/60 dark:bg-[rgba(16,1,8,0.85)] z-40"
+        aria-label="Close menu overlay"
         onClick={onClose}
-        aria-label="Close menu"
+        onKeyDown={handleOverlayKeyDown}
         tabIndex={0}
-        style={{ outline: "none" }}
       />
-      {/* Hamburger Panel */}
+
+      {/* ===== Slide-down Menu ===== */}
       <aside
         ref={menuRef}
-        className="fixed top-0 right-0 h-50vh w-full flex flex-col z-50 transition-transform duration-300 ease-out"
-        style={{
-          height: "50vh",
-          transform: open ? "translateY(0%)" : "translateY(-100%)",
-        }}
+        className={`fixed top-0 right-0 w-full z-50 transform transition-transform duration-300 ease-out ${
+          open ? "translate-y-0" : "-translate-y-full"
+        }`}
+        style={{ height: "50vh" }}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile menu"
       >
         <nav
-          className="flex flex-col w-[26.875] items-start gap-8 md:p-8 py-8 px-4 text-[#100108] bg-gray-200 dark:bg-[#13070C]"
-          aria-label="Main menu"
+          className="flex flex-col w-full h-full bg-gray-200 dark:bg-[#13070C] text-[#100108] dark:text-[#FCFCFC] gap-6 md:gap-8 p-6 md:p-8"
+          aria-label="Primary navigation"
         >
-          {/* <Link
-            to="/"
-            onClick={handleLinkClick}
-            className="w-full"
-            tabIndex={0}
-            ref={firstLinkRef}
-          >
-            <div className="flex py-3 px-2 justify-center items-center gap-2 self-stretch">
-              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] font-[700] leading-[1.5rem]">
-                Home
-              </span>
-            </div>
-          </Link> */}
+          {/* About Link */}
           <Link
             to="/about"
-            onClick={handleLinkClick}
-            className="w-full"
-            tabIndex={0}
             ref={firstLinkRef}
+            onClick={handleLinkClick}
+            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EC157D]"
           >
-            <div className="flex py-3 px-2 justify-center items-center gap-2 self-stretch">
-              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-[1.125rem] leading-[1.5rem]">
-                About
-              </span>
-            </div>
+            <span className="block text-lg font-inter leading-[1.5rem]">
+              About
+            </span>
           </Link>
 
+          {/* Projects Link */}
           <Link
             to="/projects"
             onClick={handleLinkClick}
-            className="w-full"
-            tabIndex={0}
+            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EC157D]"
           >
-            <div className="flex py-3 px-2 justify-center items-center  gap-2 self-stretch">
-              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-lg leading-[1.5rem]">
-                Projects
-              </span>
-            </div>
+            <span className="block text-lg font-inter leading-[1.5rem]">
+              Projects
+            </span>
           </Link>
 
-          <div className="flex py-3 px-2 justify-center items-center gap-2 self-stretch">
-            <a
-              href="https://www.linkedin.com/chinonyelum-chime-a4b0a4166/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-row gap-2"
-              onClick={handleLinkClick}
-              aria-label="Open Chinonye Chime LinkedIn profile in a new tab"
-              tabIndex={0}
-            >
-              <span className="text-[#100108] dark:text-[#FCFCFC] font-inter text-lg leading-[1.5rem]">
-                LinkedIn
-              </span>
-              <MdArrowOutward
-                className="h-5 w-5 text-[#100108] dark:text-[#FCFCFC]"
-                aria-hidden="true"
-              />
-            </a>
-          </div>
-          <div className="flex flex-col py-4 px-6 justify-center items-center gap-2 self-stretch">
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/in/chinonyelum-chime-a4b0a4166/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleLinkClick}
+            className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EC157D]"
+            aria-label="Open Chinonye Chime LinkedIn profile in a new tab"
+          >
+            <span className="text-lg font-inter leading-[1.5rem]">
+              LinkedIn
+            </span>
+            <MdArrowOutward className="h-5 w-5" aria-hidden="true" />
+          </a>
+
+          {/* Theme Toggle */}
+          <div className="flex justify-center py-2">
             <ThemeToggle />
           </div>
 
+          {/* Contact Button */}
           <Buttons
-            className="md:self-center self-stretch bg-[#EC157D] md:w-52 h-10 text-[#FFF]"
-            onKeyDown={handleKeyDown}
+            className="bg-[#EC157D] text-white md:w-52 h-10 self-stretch md:self-center"
             onClick={handleEmailClick}
           >
-            Get-in-touch
+            Get in Touch
           </Buttons>
         </nav>
       </aside>

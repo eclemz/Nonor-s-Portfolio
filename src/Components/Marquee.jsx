@@ -14,7 +14,6 @@ function Marquee() {
     "./FirstEPLogo.svg",
   ];
 
-  // Repeat the logo set 10 times for a longer marquee scroll
   const repeatedLogos = Array(10).fill(logos).flat();
 
   return (

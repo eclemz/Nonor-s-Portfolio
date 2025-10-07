@@ -1,113 +1,92 @@
 import React, { useState, useMemo } from "react";
-import Cards from "../Components/Cards";
-import { cardData } from "../Data/Data";
-import SortButton from "../Components/SortButton";
-import { useNavigate } from "react-router-dom";
-import CategoryBtn from "../Components/CategoryBtn";
 import { motion } from "framer-motion";
-
-const sortOptions = [
-  ...Array.from(new Set(cardData.map((card) => card.desc))).map((desc) => ({
-    value: desc,
-    label: desc,
-  })),
-];
+import { useNavigate } from "react-router-dom";
+import Cards from "../Components/Cards";
+import CategoryBtn from "../Components/CategoryBtn";
+import { cardData } from "../Data/Data";
 
 function Projects({ showSection = false }) {
-  const categories = Array.from(new Set(cardData.map((card) => card.desc)));
+  const navigate = useNavigate();
+  const categories = useMemo(
+    () => ["All", ...new Set(cardData.map((card) => card.desc))],
+    []
+  );
+
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortBy, setSortBy] = useState("");
+
   const filteredData = useMemo(() => {
     if (showSection) {
-      return !sortBy
-        ? cardData
-        : cardData.filter((card) => card.desc === sortBy);
-    } else {
-      return activeCategory === "All"
-        ? cardData
-        : cardData.filter((card) => card.desc === activeCategory);
+      return sortBy
+        ? cardData.filter((card) => card.desc === sortBy)
+        : cardData;
     }
+    return activeCategory === "All"
+      ? cardData
+      : cardData.filter((card) => card.desc === activeCategory);
   }, [activeCategory, sortBy, showSection]);
 
-  const phoneCards = filteredData.slice(0, 3);
-  const tabletFirst = filteredData.slice(0, 1);
-  const tabletSecond = filteredData.slice(1, 3);
-  const lgFirst = filteredData.slice(0, 3);
-  const navigate = useNavigate();
-
   const handleCardClick = (card) => {
-    const projectName = card.title.toLowerCase();
-    navigate(`/project/${encodeURIComponent(projectName)}`);
+    const projectName = encodeURIComponent(card.title.toLowerCase());
+    navigate(`/project/${projectName}`);
   };
 
+  const phoneCards = filteredData.slice(0, 3);
+  const lgCards = filteredData.slice(0, 3);
+
   return (
-    <div className="flex flex-col w-full px-4 md:px-8 py-14 md:py-0 lg:py-0 lg:px-0 pb-14 lg:pb-24 justify-center items-center gap-5 bg-[#FCFCFC] dark:bg-[#100108] mt-10">
-      {showSection && (
-        <>
-          <section className="projectTitle md:hidden flex md:pt-0 justify-between items-center self-stretch lg:py-5 lg:px-14">
-            <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
-              Projects
-            </span>
-            {/* <SortButton
-              options={sortOptions}
-              value={sortBy}
-              onChange={setSortBy}
-            /> */}
-          </section>
-          <section className="hidden projectTitle md:flex items-center flex-col md:pt-0 w-full lg:py-5 lg:px-14">
-            <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
-              Projects
-            </span>
-          </section>
-        </>
-      )}
-
-      {!showSection && (
-        <>
-          <div className="fixed lg:px-14 top-[4.6875rem] md:top-[5.625rem] pt-6 md:pt-8 shadow-sm md:px-8 px-4 pb-4 z-30 bg-white dark:bg-[#100108] w-full">
-            <span className="font-inter text-2xl font-[700] text-[#100108] dark:text-[#FCFCFC]">
-              Projects
-            </span>
-            <CategoryBtn
-              categories={categories}
-              activeCategory={activeCategory}
-              onCategoryChange={setActiveCategory}
-            />
-          </div>
-        </>
-      )}
-      {!showSection && (
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lt:grid-cols-2 lg:grid-cols-3
-            w-full gap-10 md:gap-6 items-center justify-center 
-            md:justify-end md:self-stretch lg:gap-y-16 lg:px-14 md:pt-[275px] pt-48 pb-10"
-          whileTap={{ scale: 0.96 }}
+    <section
+      className="w-full bg-[#FCFCFC] dark:bg-[#100108] px-4 md:px-8 lg:px-14 py-10 lg:py-16 flex flex-col items-center gap-6 mt-10"
+      aria-labelledby="projects-heading"
+    >
+      <header className="w-full flex flex-col items-center justify-between py-6">
+        <h2
+          id="projects-heading"
+          className="text-2xl font-bold text-[#100108] dark:text-[#FCFCFC]"
         >
-          <Cards data={filteredData} onCardClick={handleCardClick} />
-        </motion.div>
-      )}
+          Projects
+        </h2>
+        {!showSection && (
+          <CategoryBtn
+            categories={categories}
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+          />
+        )}
+      </header>
 
-      {showSection && (
+      {showSection ? (
         <>
+          {/* Mobile view */}
           <div
-            className="md:hidden w-full flex flex-col gap-10 items-start justify-center"
-            role="card list"
-            aria-label="Projects on our shelf"
+            className="md:hidden flex flex-col gap-10 w-full"
+            role="list"
+            aria-label="Project showcase for mobile view"
           >
             <Cards data={phoneCards} onCardClick={handleCardClick} />
           </div>
 
+          {/* Desktop view */}
           <div
-            className="hidden cursor-pointer w-full md:grid md:grid-cols-2 lt:grid-cols-2 lg:grid-cols-3 lg:gap-y-[4.5rem] 
-             lg:py-5 lg:px-14 md:py-0 md:px-0 gap-6 items-center"
+            className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-y-16 w-full"
             role="list"
-            aria-label="Projects on our shelf"
+            aria-label="Filtered projects list"
+            tabindex="0"
           >
-            <Cards data={lgFirst} onCardClick={handleCardClick} />
+            <Cards data={lgCards} onCardClick={handleCardClick} />
           </div>
         </>
+      ) : (
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6 lg:gap-y-16 w-full pt-10 pb-10"
+          role="list"
+          aria-label="Filtered projects list"
+          whileTap={{ scale: 0.98 }}
+        >
+          <Cards data={filteredData} onCardClick={handleCardClick} />
+        </motion.div>
       )}
-    </div>
+    </section>
   );
 }
 

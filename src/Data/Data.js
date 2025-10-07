@@ -11,7 +11,7 @@ export const cardData = [
     image: "creatneste1.svg",
     title: "Creatneste",
     date: "Oct 23 2024",
-    desc: "B2B Tech",
+    desc: "B2B",
     about: `**Creatneste** is a software development company focused on building smart, scalable digital solutions for startups, and social impact projects across Africa.`,
     link: "www.creatneste.com",
   },
@@ -20,7 +20,7 @@ export const cardData = [
     image: "e&p.svg",
     title: "First E & P",
     date: "Oct 23 2024",
-    desc: "Fintech",
+    desc: "B2B",
     about: `**FIRST Exploration & Petroleum Development Company (FIRST E&P)** is a leading Nigerian oil and gas firm committed to sustainable energy production.`,
     link: "www.studio3launchpad.com",
   },
@@ -28,7 +28,7 @@ export const cardData = [
     image: "wien2.svg",
     title: "WIEN",
     date: "Oct 23 2024",
-    desc: "Edtech",
+    desc: "NGO",
     about: `**The Women in Energy Network (WIEN)** is a professional platform that empowers and connects women working across the energy sector in Nigeria.`,
     link: "www.wien.com",
   },
@@ -337,5 +337,53 @@ Through workshops, bootcamps, and one-on-one mentorships, I’ve helped over 20
     desc: `As a brand strategist, I work with startups, NGOs, and small businesses to shape strong, memorable brand identities that align with both user needs and business goals. My approach combines design thinking, user experience, and visual storytelling to create brand guidelines and Identity that resonate and convert.
 
 I bring a unique blend of UX design and brand strategy, helping teams define their positioning, voice, and value proposition across digital touchpoints. I help craft strategic frameworks that guide everything from logo design and messaging to web content, social media, and user experience.`,
+  },
+];
+
+export const navLinks = [
+  { name: "About", type: "route", to: "/about" },
+  { name: "Project", type: "route", to: "/projects" },
+];
+export const footerLinks = [
+  { name: "Dribble", type: "link", to: "https://dribbble.com/Norno" },
+  { name: "Behance", type: "link", to: "https://www.behance.net/chinonychime" },
+  {
+    name: "LinkedIn",
+    type: "link",
+    to: "http://linkedin.com/in/chinonyelum-chime-a4b0a4166",
+  },
+];
+
+export const experience = [
+  {
+    icon: "TechWomenlogo1.svg",
+    title: "UX Researcher & Designer",
+    company: "TechWomen Nigeria",
+    duration: "Jun 2025 - Present",
+  },
+
+  {
+    icon: "studio3logo1.svg",
+    title: "UX Researcher & Design Tutor",
+    company: "Studio3lunchpad",
+    duration: "May 2025 - Present",
+  },
+  {
+    icon: "studio4852logo.svg",
+    title: "UX Researcher & Designer",
+    company: "Studio4852",
+    duration: "Oct 2024 - Aug 2025",
+  },
+  {
+    icon: "EMElogo.svg",
+    title: "SSDA",
+    company: "Ux Designer",
+    duration: "Feb, 2024 - Oct, 2024",
+  },
+  {
+    icon: "thrivelogo.svg",
+    title: "UX Designer",
+    company: "Thriveagric",
+    duration: "May, 2022 - Aug 2025",
   },
 ];
