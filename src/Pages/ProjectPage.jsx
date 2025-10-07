@@ -1,8 +1,9 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { cardData2 } from "../Data/Data";
+import { cardData2, cardData3 } from "../Data/Data";
 import { IoIosArrowBack } from "react-icons/io";
 import React, { useRef, useEffect, useState } from "react";
 import { Buttons, Buttons1 } from "../Components/Buttons";
+import { data } from "autoprefixer";
 
 function PictureOptimized({ file, alt = "", className = "" }) {
   if (!file) return null;
@@ -173,36 +174,44 @@ function ProjectPage() {
   const impacts = sections.find((s) => s.id === 5);
 
   return (
-    <main className="flex flex-col items-start py-12 lg:px-14 lt:px-10 md:px-8 px-4 md:gap-10 gap-5 bg-white dark:bg-[#100108] w-full">
+    <main className="flex flex-col items-start py-6 md:py-12 lg:px-14 lt:px-10 md:px-8 px-4 md:gap-10 gap-2 bg-white dark:bg-[#100108] w-full">
       <nav
-        className="lg:hidden md:flex lg:pt-28 md:pt-20 pt-12  md:-mb-8 -mb-4 justify-center items-center gap-3 bg-inherit text-black dark:text-[#FCFCFC]"
+        className="lg:hidden sticky top-20 self-stretch left-0 right-0 z-40 py-2 bg-[#FCFCFC] dark:bg-[#100108]  border-gray-200 dark:border-gray-800"
         role="navigation"
         aria-label="Back navigation"
       >
-        <Link
-          to="/projects"
-          className="visited:dark:text-[#FCFCFC] visited:text-[#FCFCFC] hover:underline no-underline flex gap-1 py-3 justify-center items-center"
-          aria-label="Back to projects"
-        >
-          <IoIosArrowBack
-            className="flex h-5 w-5 justify-center items-center text-black dark:text-[#FCFCFC]"
-            aria-hidden="true"
-          />
-          <span className="text-black dark:text-[#FCFCFC] text-sm md:text-base font-[500] justify-center ">
-            Back
-          </span>
-        </Link>
+        <div className="w-full bg-[#FCFCFC] dark:bg-[#100108] ">
+          <Link
+            to="/projects"
+            className="visited:dark:text-[#FCFCFC] visited:text-[#FCFCFC] hover:underline no-underline flex gap- items-center w-fit"
+            aria-label="Back to projects"
+          >
+            <IoIosArrowBack
+              className="flex h-5 w-5 justify-center items-center text-black dark:text-[#FCFCFC]"
+              aria-hidden="true"
+            />
+            <span className="text-black dark:text-[#FCFCFC] text-sm md:text-base font-[500]">
+              Back
+            </span>
+          </Link>
+        </div>
       </nav>
 
       <div className="lg:hidden flex flex-col items-start self-stretch gap-2">
         <span className="font-inter text-2xl font-[700] text-black dark:text-[#FCFCFC]">
           {params.projectName}
         </span>
-        <a href="" aria-label={`Open external link for ${params.projectName}`}>
-          <span className='self-stretch text-black dark:text-[#FCFCFC] font-inter text-base font-[500] underline decoration-solid decoration-1 underline-offset-2"'>
+        {overview && overview.link && (
+          <a
+            href={`https://${overview.link}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group text-black flex dark:text-[#FCFCFC] gap-2 font-inter text-sm lg:text-xl font-[500] underline decoration-solid decoration-2 underline-offset-4"
+            aria-label={`Open external link for ${params.projectName}`}
+          >
             Link
-          </span>
-        </a>
+          </a>
+        )}
       </div>
 
       {/* Mobile unified layout */}
@@ -291,17 +300,21 @@ function ProjectPage() {
           <span className="font-inter text-2xl lg:text-2xl font-bold text-black dark:text-[#FCFCFC]">
             {displayName}
           </span>
-          <a
-            href=""
-            className="group text-black flex dark:text-[#FCFCFC] gap-2 font-inter text-sm lg:text-xl font-[500] underline decoration-solid decoration-2 underline-offset-4"
-            aria-label={`Open external link for ${displayName}`}
-          >
-            Link
-          </a>
+          {overview && overview.link && (
+            <a
+              href={`https://${overview.link}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group text-black flex dark:text-[#FCFCFC] gap-2 font-inter text-sm lg:text-xl font-[500] underline decoration-solid decoration-2 underline-offset-4"
+              aria-label={`Open external link for ${displayName}`}
+            >
+              Link
+            </a>
+          )}
         </div>
 
         {/* Side Scroll Buttons */}
-        <aside className="hidden lg:flex flex-col fixed z-30 gap-2 px-8 py-3 left-6 top-48">
+        <aside className="hidden lg:flex flex-col fixed z-30 gap-2 px-8 py-3 left-6 top-44">
           <h3 className="text-2xl font-inter font-semibold text-[#746C70]">
             Content
           </h3>
@@ -332,7 +345,7 @@ function ProjectPage() {
         </aside>
 
         {/* Unified layout for all screen sizes */}
-        <div className="flex flex-col lg:pt-[7rem] lt:px-16 lg:px-[120px] bg-white dark:bg-[#100108] gap-16">
+        <div className="flex flex-col lg:pt-[7rem] lt:px-16 md:px-8 xl:px-[120px] bg-white dark:bg-[#100108] gap-16">
           {/* Overview (full width) */}
           {overview && (
             <article
@@ -438,12 +451,12 @@ function ProjectPage() {
         </div>
       </section>
 
-      <section className="sticky bottom-0 left-2 z-30 lg:pl-32 items-start gap-7 self-stretch w-full  ">
-        <div className="flex flex-col w-full md:flex-row justify-between items-start self-stretch md:py-4  px-0 md:px-0 lt:px-[4.5rem] lg:px-56 gap-4">
+      <section className="sticky bottom-0 left-2 z-30 lg:pl-32 items-start pt-8 gap-7 self-stretch w-full  ">
+        <div className="flex flex-col w-full md:flex-row justify-between items-start self-stretch md:py-4  px-0 md:px-0 lt:px-[4.5rem] lg:px-16 xl:px-56 gap-4">
           {prevProject && (
             <Buttons1
               onClick={handlePrevious}
-              className={`h-8 md:h-10 flex md:w-[50%] lt:h-10 font-inter border bg-white/80 dark:bg-black/80 border-black dark:border-[#EC157D] text-black dark:text-[#EC157D] md:self-auto self-stretch`}
+              className={` md:w-[50%] lt:h-10 md:h-12 h-10 font-inter border bg-white/80 dark:bg-black/80 border-black dark:border-[#EC157D] text-black dark:text-[#EC157D] md:self-auto self-stretch whitespace-nowrap`}
             >
               Previous Project
             </Buttons1>
@@ -451,7 +464,7 @@ function ProjectPage() {
           {nextProject && (
             <Buttons
               onClick={handleNext}
-              className={`h-8 md:h-10 flex md:w-[50%] lt:h-10 font-inter text-white bg-[#EC157D] md:self-auto self-stretch`}
+              className={` md:w-[50%] lt:h-10 md:h-12 h-10 font-inter text-white bg-[#EC157D] md:self-auto self-stretch whitespace-nowrap`}
             >
               Next Project
             </Buttons>

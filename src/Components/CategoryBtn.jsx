@@ -2,7 +2,7 @@ import React from "react";
 
 function CategoryBtn({ categories, activeCategory, onCategoryChange }) {
   return (
-    <nav aria-label="Category navigation" className="w-[50%]">
+    <nav aria-label="Category navigation" className="w-full">
       <ul className="flex self-start justify-between items-start py-3 w-full">
         {categories.map((category) => (
           <li key={category} className="group">

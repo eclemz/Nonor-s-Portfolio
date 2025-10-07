@@ -57,6 +57,7 @@ export const cardData2 = {
     {
       id: 1,
       image1: "cols3.png",
+      link: "www.studio3launchpad.com",
       title1: `Overview`,
       desc1: `**Studio3Launchpad** is an EdTech platform created to equip young Africans with Tech and creative skills through practical, accessible learning experiences. As part of the founding design team,I was involved in every phase from foundational research to branding, user experience design, and launch.
 
@@ -124,6 +125,7 @@ As an **SDG** advocate, my focus was to ensure the platform aligned with **SDG*
     {
       id: 1,
       image1: "creatneste1.svg",
+      link: "creatneste.com",
       title1: `Overview`,
       desc1: `**Creatneste** is a software development company focused on building smart, scalable digital solutions for startups, SMEs, and social impact projects across Africa. As the Lead Designer, I was responsible for driving the design process end to end — from early-stage user research and strategy, to branding, UI design, and digital marketing execution.
 
@@ -193,6 +195,7 @@ of future projects and client-facing materials.`,
     {
       id: 1,
       image1: "e&p1.svg",
+      link: "www.first-epdc.com",
       title1: `Overview`,
       desc1: `**FIRST Exploration & Petroleum Development Company (FIRST E&P)** is a leading Nigerian oil and gas firm committed to sustainable energy production. The company’s corporate website was functional but outdated in usability, accessibility, and brand consistency.
 
@@ -256,6 +259,7 @@ As Lead Designer, I conducted a heuristic evaluation of the existing site, id
     {
       id: 1,
       image1: "wien.svg",
+      link: "www.wien.com.ng",
       title1: `Overview`,
       desc1: `**The Women in Energy Network (WIEN)** is a professional platform that empowers and connects women working across the energy sector in Nigeria. Their existing landing page lacked visual appeal, clear messaging, and an intuitive structure that could effectively communicate the organization’s mission and encourage engagement.
 
@@ -385,5 +389,11 @@ export const experience = [
     title: "UX Designer",
     company: "Thriveagric",
     duration: "May, 2022 - Aug 2025",
+  },
+  {
+    icon: "creatnestelogo1.png",
+    title: "UX Designer",
+    company: "CreatNeste",
+    duration: "Aug, 2024 - Present",
   },
 ];

@@ -7,7 +7,6 @@ export default function RouteLoader({ children }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Start loading when path changes
     setLoading(true);
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);

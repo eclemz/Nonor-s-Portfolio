@@ -12,7 +12,7 @@ function Footer() {
       role="contentinfo"
     >
       {/* Top Section */}
-      <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0 py-8">
+      <div className="w-full flex flex-row md:flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0 py-8">
         {/* Brand Section */}
         <div className="hidden lg:flex items-center gap-2">
           <img

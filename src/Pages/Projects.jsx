@@ -36,30 +36,40 @@ function Projects({ showSection = false }) {
 
   return (
     <section
-      className="w-full bg-[#FCFCFC] dark:bg-[#100108] px-4 md:px-8 lg:px-14 py-10 lg:py-16 flex flex-col items-center gap-6 mt-10"
+      className="w-full relative bg-[#FCFCFC] dark:bg-[#100108] px-4 md:px-8 lg:px-14 py-10 xl:py-16 flex flex-col items-center"
       aria-labelledby="projects-heading"
     >
-      <header className="w-full flex flex-col items-center justify-between py-6">
+      <header
+        className={`w-full sticky top-0 left-0 z-20 flex flex-col bg-[#FCFCFC] dark:bg-[#100108] ${
+          !showSection ? "pt-6" : "pt-0"
+        }`}
+      >
         <h2
           id="projects-heading"
-          className="text-2xl font-bold text-[#100108] dark:text-[#FCFCFC]"
+          className="text-2xl text-center md:text-left font-bold text-[#100108] dark:text-[#FCFCFC]"
         >
           Projects
         </h2>
-        {!showSection && (
-          <CategoryBtn
-            categories={categories}
-            activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
-          />
-        )}
       </header>
+
+      {/* Category bar that sticks below the header */}
+      <div
+        className={`sticky top-[70px] w-full z-10 bg-[#FCFCFC] dark:bg-[#100108] justify-center pt-3 ${
+          !showSection ? "block" : "hidden"
+        }`}
+      >
+        <CategoryBtn
+          categories={categories}
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+        />
+      </div>
 
       {showSection ? (
         <>
           {/* Mobile view */}
           <div
-            className="md:hidden flex flex-col gap-10 w-full"
+            className="md:hidden pt-8 flex flex-col gap-10 w-full"
             role="list"
             aria-label="Project showcase for mobile view"
           >
@@ -68,7 +78,7 @@ function Projects({ showSection = false }) {
 
           {/* Desktop view */}
           <div
-            className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-y-16 w-full"
+            className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8 lg:gap-y-16 w-full"
             role="list"
             aria-label="Filtered projects list"
             tabindex="0"
@@ -78,7 +88,7 @@ function Projects({ showSection = false }) {
         </>
       ) : (
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6 lg:gap-y-16 w-full pt-10 pb-10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6 lg:gap-y-16 w-full pt-10 pb-10 "
           role="list"
           aria-label="Filtered projects list"
           whileTap={{ scale: 0.98 }}
