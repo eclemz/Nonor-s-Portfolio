@@ -37,13 +37,11 @@ function Projects({ showSection = false }) {
 
   return (
     <>
-      <Helmet>
-        <title>Projects | Chime Chinonye</title>
-        <meta
-          name="description"
-          content="A showcase of my portfolio projects featuring UI/UX case studies, interactive tools, and production-level client work."
-        />
-      </Helmet>
+      <SEO
+        title="My Portfolio | Chinonyelum Chime"
+        description="Browse through my latest UX design projects and case studies"
+        canonicalUrl="https://www.chinonyechime.com/projects"
+      />
 
       <section
         className="w-full relative bg-[#FCFCFC] dark:bg-[#100108] px-4 md:px-8 lg:px-14 py-10 xl:py-16 flex flex-col items-center"

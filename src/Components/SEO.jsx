@@ -1,8 +1,14 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import React, { useEffect } from "react";
 
-export default function SEO() {
+export default function SEO({
+  title = "Chinonyelum Chime (Nornor) | UX Designer & Researcher",
+  description = "Explore the UX design and research portfolio of Chinonyelum Chime (Nornor) — creating human-centered, accessible digital experiences.",
+  keywords = "UX Design, User Research, Accessibility, Interface Design, Prototyping, Usability Testing",
+  canonicalUrl = "https://chinonyechime.com/",
+  image = "https://chinonyechime.com/images/profile.jpg",
+} = {}) {
   const metaDescription =
+    description ||
     "Chinonyelum Cynthia Chime (Nornor) is a UX Designer and Researcher creating human-centered digital experiences. Explore her design portfolio featuring UX case studies, usability research, and modern interface design.";
 
   const structuredData = {
@@ -11,11 +17,11 @@ export default function SEO() {
       // PERSON
       {
         "@type": "Person",
-        "@id": "https://nonor-s-portfolio-l26i.vercel.app/#person",
+        "@id": "https://chinonyechime.com/#person",
         name: "Chinonyelum Cynthia Chime",
         alternateName: "Nornor",
-        url: "https://nonor-s-portfolio-l26i.vercel.app/",
-        image: "https://nonor-s-portfolio-l26i.vercel.app/images/profile.jpg", // Add your hosted profile image
+        url: "https://chinonyechime.com/",
+        image: image,
         jobTitle: "UX Designer & UX Researcher",
         worksFor: {
           "@type": "Organization",
@@ -41,30 +47,29 @@ export default function SEO() {
       // WEBSITE
       {
         "@type": "WebSite",
-        "@id": "https://nonor-s-portfolio-l26i.vercel.app/#website",
-        url: "https://nonor-s-portfolio-l26i.vercel.app/",
-        name: "Nornor’s Portfolio",
+        "@id": "https://chinonyechime.com/#website",
+        url: "https://chinonyechime.com/",
+        name: "Nornor's Portfolio",
         publisher: {
-          "@id": "https://nonor-s-portfolio-l26i.vercel.app/#person",
+          "@id": "https://chinonyechime.com/#person",
         },
       },
 
       // WEBPAGE
       {
         "@type": "WebPage",
-        "@id": "https://nonor-s-portfolio-l26i.vercel.app/#webpage",
-        url: "https://nonor-s-portfolio-l26i.vercel.app/",
+        "@id": "https://chinonyechime.com/#webpage",
+        url: "https://chinonyechime.com/",
         name: "Portfolio of Chinonyelum Cynthia Chime",
         isPartOf: {
-          "@id": "https://nonor-s-portfolio-l26i.vercel.app/#website",
+          "@id": "https://chinonyechime.com/#website",
         },
         about: {
-          "@id": "https://nonor-s-portfolio-l26i.vercel.app/#person",
+          "@id": "https://chinonyechime.com/#person",
         },
         datePublished: "2025-01-01",
         dateModified: "2025-10-01",
-        description:
-          "Explore the UX design and research work of Chinonyelum Cynthia Chime (Nornor). A showcase of human-centered projects, prototypes, and design systems.",
+        description: metaDescription,
       },
 
       // BREADCRUMBS
@@ -75,33 +80,70 @@ export default function SEO() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://nonor-s-portfolio-l26i.vercel.app/",
+            item: "https://chinonyechime.com/",
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Portfolio",
-            item: "https://nonor-s-portfolio-l26i.vercel.app/portfolio",
+            item: "https://chinonyechime.com/portfolio",
           },
         ],
       },
     ],
   };
 
-  return (
-    <Helmet>
-      <title>Chinonyelum Chime (Nornor) | UX Designer & Researcher</title>
-      <meta
-        name="description"
-        content="Explore the UX design and research portfolio of Chinonyelum Chime (Nornor) — creating human-centered, accessible digital experiences."
-      />
-      <meta
-        name="keywords"
-        content="UX Design, User Research, Accessibility, Interface Design, Prototyping, Usability Testing"
-      />
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
-    </Helmet>
-  );
+  useEffect(() => {
+    // Update document title
+    document.title = title;
+
+    // Update or create meta description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta");
+      metaDesc.name = "description";
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.content = metaDescription;
+
+    // Update or create meta keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement("meta");
+      metaKeywords.name = "keywords";
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.content = keywords;
+
+    // Update or create canonical link
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement("link");
+      canonicalLink.rel = "canonical";
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = canonicalUrl;
+
+    // Add structured data
+    let existingScript = document.querySelector(
+      'script[type="application/ld+json"]'
+    );
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    // Cleanup function
+    return () => {
+      if (existingScript) {
+        document.head.removeChild(script);
+      }
+    };
+  }, [title, metaDescription, keywords, canonicalUrl, structuredData]);
+
+  return null; // This component doesn't render anything
 }
