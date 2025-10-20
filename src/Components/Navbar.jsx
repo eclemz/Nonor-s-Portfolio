@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../Assets/logo.png";
-import logo1 from "../Assets/logo1.png";
+import logo from "../Assets/logo.svg";
+import logo1 from "../Assets/logo1.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdArrowOutward } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
@@ -39,13 +39,15 @@ function Navbar({ onHamburgerClick }) {
             <img
               src={logo}
               alt="Chinonye Chime dark mode logo"
-              className="dark:block hidden lg:block w-[2.8125rem] h-8 shrink-0"
+              className="dark:block hidden w-[2.8125rem] h-8"
             />
+
             <img
               src={logo1}
               alt="Chinonye Chime light mode logo"
-              className="dark:hidden block w-[2.8125rem] h-8 shrink-0"
+              className="dark:hidden block w-[2.8125rem] h-8"
             />
+
             <span className="font-inter text-xl font-medium text-[#100108] dark:text-[#FCFCFC]">
               Chinonye Chime
             </span>
