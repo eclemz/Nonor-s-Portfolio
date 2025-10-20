@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Cards from "../Components/Cards";
 import CategoryBtn from "../Components/CategoryBtn";
 import { cardData } from "../Data/Data";
-import { Helmet } from "react-helmet-async";
+import SEO from "../Components/SEO";
 
 function Projects({ showSection = false }) {
   const navigate = useNavigate();
