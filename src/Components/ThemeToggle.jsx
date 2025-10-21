@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { MdWbSunny, MdDarkMode } from "react-icons/md";
+import React, { useEffect, useState, Suspense } from "react";
+import { MdDarkMode } from "./Icons";
+import { MdWbSunny } from "./Icons";
 
 function ThemeToggle() {
   const [theme, setTheme] = useState(
@@ -42,15 +43,19 @@ function ThemeToggle() {
         `}
       >
         {theme === "dark" ? (
-          <MdWbSunny
-            className="text-[#FFFFFF] w-4 h-4 rounded-full bg-[#100108] text-lg"
-            aria-hidden="true"
-          />
+          <Suspense fallback={null}>
+            <MdWbSunny
+              className="text-[#FFFFFF] w-4 h-4 rounded-full bg-[#100108] text-lg"
+              aria-hidden="true"
+            />
+          </Suspense>
         ) : (
-          <MdDarkMode
-            className="text-[#100108] w-4 h-4 rounded-full bg-[#FFF] text-lg"
-            aria-hidden="true"
-          />
+          <Suspense fallback={null}>
+            <MdDarkMode
+              className="text-[#100108] w-4 h-4 rounded-full bg-[#FFF] text-lg"
+              aria-hidden="true"
+            />
+          </Suspense>
         )}
       </span>
     </button>

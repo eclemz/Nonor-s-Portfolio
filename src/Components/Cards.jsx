@@ -42,12 +42,11 @@ function Cards({ data, onCardClick, className = "" }) {
           className={`card w-full flex flex-col md:flex-1 overflow-hidden bg-white dark:bg-[#100108]
           items-start hover:dark:shadow-[0_2px_8px_rgba(252,252,252,0.10)] hover:shadow-[0_2px_8px_rgba(0,0,0,0.10)] shrink-0 md:rounded-2xl 
           active:scale-[0.98] hover:scale-[1.02] rounded-lg border-[0.231px] border-[#b4b2b2] dark:border-[#494949] 
-          transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6C63FF] ${className}`}
+          transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6C63FF] cursor-pointer ${className}`}
           onClick={() => onCardClick(card)}
           tabIndex={0}
           aria-label={`Open details for ${card.title}`}
           onKeyDown={(e) => handleKeyDown(e, card)}
-          style={{ cursor: "pointer" }}
         >
           <picture className="w-full" aria-label={`${card.title} thumbnail`}>
             <img

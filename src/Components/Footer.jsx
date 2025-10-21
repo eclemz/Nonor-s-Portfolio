@@ -1,5 +1,5 @@
-import React from "react";
-import { MdArrowOutward } from "react-icons/md";
+import React, { Suspense } from "react";
+import { MdArrowOutward } from "./Icons";
 import { Link } from "react-router-dom";
 import logo from "../Assets/logo.png";
 import logo1 from "../Assets/logo1.png";
@@ -65,10 +65,12 @@ function Footer() {
                   className="group flex items-center gap-1 text-xs lg:text-base font-semibold text-[#100108] dark:text-[#FCFCFC] hover:text-[#EC157D] transition-all"
                 >
                   {name}
-                  <MdArrowOutward
-                    className="opacity-0 group-hover:opacity-100 h-5 w-5 text-[#EC157D] transition-opacity duration-300"
-                    aria-hidden="true"
-                  />
+                  <Suspense fallback={null}>
+                    <MdArrowOutward
+                      className="opacity-0 group-hover:opacity-100 h-5 w-5 text-[#EC157D] transition-opacity duration-300"
+                      aria-hidden="true"
+                    />
+                  </Suspense>
                 </a>
               </li>
             ))}

@@ -86,6 +86,8 @@ function Projects({ showSection = false }) {
             {/* Desktop view */}
             <div
               className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8 lg:gap-y-16 w-full"
+              role="list"
+              aria-label="Projects list"
               aria-labelledby="projects-heading"
               tabIndex="0"
             >
@@ -95,7 +97,12 @@ function Projects({ showSection = false }) {
         ) : (
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6 lg:gap-y-16 w-full pt-10 pb-10 "
-            aria-labelledby="projects-heading"
+            tabIndex={-1}
+            onFocus={(e) => {
+              if (e.target === e.currentTarget) {
+                e.currentTarget.blur();
+              }
+            }}
             whileTap={{ scale: 0.98 }}
           >
             <Cards data={filteredData} onCardClick={handleCardClick} />

@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { GiSettingsKnobs } from "react-icons/gi";
+import React, { useState, useRef, useEffect, Suspense } from "react";
+import { MdKeyboardArrowDown } from "./Icons";
+import { GiSettingsKnobs } from "./Icons";
 
 function SortButton({ options, onChange, value }) {
   const [open, setOpen] = useState(false);
@@ -80,16 +80,20 @@ function SortButton({ options, onChange, value }) {
           Filter
         </span>
         <span className="dark:text-white text-[#100108]">
-          <MdKeyboardArrowDown
-            className={`md:hidden block h-[1.5rem] w-[1.5rem] ${
-              open ? "rotate-180" : "rotate-0"
-            }`}
-            aria-hidden="true"
-          />
-          <GiSettingsKnobs
-            className={`hidden md:block h-[1.5rem] w-[1.5rem]`}
-            aria-hidden="true"
-          />
+          <Suspense fallback={null}>
+            <MdKeyboardArrowDown
+              className={`md:hidden block h-[1.5rem] w-[1.5rem] ${
+                open ? "rotate-180" : "rotate-0"
+              }`}
+              aria-hidden="true"
+            />
+          </Suspense>
+          <Suspense fallback={null}>
+            <GiSettingsKnobs
+              className={`hidden md:block h-[1.5rem] w-[1.5rem]`}
+              aria-hidden="true"
+            />
+          </Suspense>
         </span>
       </button>
       {open && (

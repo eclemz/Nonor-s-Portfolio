@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, Suspense } from "react";
 import { Link } from "react-router-dom";
-import { MdArrowOutward } from "react-icons/md";
+import { MdArrowOutward } from "./Icons";
 import ThemeToggle from "./ThemeToggle";
 import { Buttons } from "./Buttons";
 
@@ -118,7 +118,9 @@ function Hamburger({ open, onClose }) {
             <span className="text-lg font-inter leading-[1.5rem]">
               LinkedIn
             </span>
-            <MdArrowOutward className="h-5 w-5" aria-hidden="true" />
+            <Suspense fallback={null}>
+              <MdArrowOutward className="h-5 w-5" aria-hidden="true" />
+            </Suspense>
           </a>
 
           {/* Theme Toggle */}

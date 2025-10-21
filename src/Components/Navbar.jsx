@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Suspense } from "react";
 import logo from "../Assets/logo.svg";
 import logo1 from "../Assets/logo1.svg";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { MdArrowOutward } from "react-icons/md";
+import { GiHamburgerMenu } from "./Icons";
+import { MdArrowOutward } from "./Icons";
 import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import { Buttons } from "./Buttons";
@@ -38,12 +38,14 @@ function Navbar({ onHamburgerClick }) {
           >
             <img
               src={logo}
+              role="link"
               alt="Chinonye Chime dark mode logo"
               className="dark:block hidden w-[2.8125rem] h-8"
             />
 
             <img
               src={logo1}
+              role="link"
               alt="Chinonye Chime light mode logo"
               className="dark:hidden block w-[2.8125rem] h-8"
             />
@@ -67,10 +69,12 @@ function Navbar({ onHamburgerClick }) {
           aria-label="Open navigation menu"
           className="flex justify-center items-center w-10 h-10 transition-all duration-300 ease-in-out border-0 bg-transparent focus:outline-none focus:ring-2 focus:ring-[#EC157D] rounded-md"
         >
-          <GiHamburgerMenu
-            className="w-6 h-6 md:w-[2.25rem] md:h-[2.25rem] text-black dark:text-white"
-            aria-hidden="true"
-          />
+          <Suspense fallback={null}>
+            <GiHamburgerMenu
+              className="w-6 h-6 md:w-[2.25rem] md:h-[2.25rem] text-black dark:text-white"
+              aria-hidden="true"
+            />
+          </Suspense>
         </button>
       </div>
 
@@ -142,10 +146,12 @@ function Navbar({ onHamburgerClick }) {
             <span className="text-[#100108] dark:text-[#FCFCFC] font-inter group-hover:text-[#EC157D] lg:text-base md:text-sm font-[400] leading-6 transition-colors duration-300">
               LinkedIn
             </span>
-            <MdArrowOutward
-              className="opacity-0 group-hover:opacity-100 h-5 w-5 text-[#EC157D] transition-opacity duration-300"
-              aria-hidden="true"
-            />
+            <Suspense fallback={null}>
+              <MdArrowOutward
+                className="opacity-0 group-hover:opacity-100 h-5 w-5 text-[#EC157D] transition-opacity duration-300"
+                aria-hidden="true"
+              />
+            </Suspense>
           </a>
 
           <Buttons

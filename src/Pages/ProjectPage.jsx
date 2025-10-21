@@ -1,9 +1,8 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { cardData2, cardData3 } from "../Data/Data";
-import { IoIosArrowBack } from "react-icons/io";
-import React, { useRef, useEffect, useState } from "react";
+import { IoIosArrowBack } from "../Components/Icons";
+import React, { useRef, useEffect, useState, Suspense } from "react";
 import { Buttons, Buttons1 } from "../Components/Buttons";
-import { data } from "autoprefixer";
 
 function PictureOptimized({ file, alt = "", className = "" }) {
   if (!file) return null;
@@ -186,10 +185,12 @@ function ProjectPage() {
             className="visited:dark:text-[#FCFCFC] visited:text-[#FCFCFC] hover:underline no-underline flex gap- items-center w-fit"
             aria-label="Back to projects"
           >
-            <IoIosArrowBack
-              className="flex h-5 w-5 justify-center items-center text-black dark:text-[#FCFCFC]"
-              aria-hidden="true"
-            />
+            <Suspense fallback={null}>
+              <IoIosArrowBack
+                className="flex h-5 w-5 justify-center items-center text-black dark:text-[#FCFCFC]"
+                aria-hidden="true"
+              />
+            </Suspense>
             <span className="text-black dark:text-[#FCFCFC] text-sm md:text-base font-[500]">
               Back
             </span>

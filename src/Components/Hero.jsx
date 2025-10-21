@@ -69,8 +69,15 @@ function Hero({ showButton = true }) {
       {showButton && (
         <Buttons
           className="md:self-start self-stretch bg-[#EC157D] h-10 lt:h-10 lg:h-12 text-[#FFF]"
+          role="button"
+          tabIndex="0"
           onClick={handleProjectClick}
-          onKeyDown={handleKeyDown}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleProjectClick();
+            }
+          }}
           aria-label="View my work and explore portfolio projects"
         >
           View My Work

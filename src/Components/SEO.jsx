@@ -94,10 +94,10 @@ export default function SEO({
   };
 
   useEffect(() => {
-    // Update document title
+    // document title
     document.title = title;
 
-    // Update or create meta description
+    //  meta description
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
       metaDesc = document.createElement("meta");
@@ -106,7 +106,7 @@ export default function SEO({
     }
     metaDesc.content = metaDescription;
 
-    // Update or create meta keywords
+    // meta keywords
     let metaKeywords = document.querySelector('meta[name="keywords"]');
     if (!metaKeywords) {
       metaKeywords = document.createElement("meta");
@@ -115,7 +115,7 @@ export default function SEO({
     }
     metaKeywords.content = keywords;
 
-    // Update or create canonical link
+    // canonical link
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
       canonicalLink = document.createElement("link");
@@ -124,23 +124,25 @@ export default function SEO({
     }
     canonicalLink.href = canonicalUrl;
 
-    // Add structured data
-    let existingScript = document.querySelector(
-      'script[type="application/ld+json"]'
-    );
+    //structured data
+    const scriptId = "structured-data-script";
+    let existingScript = document.getElementById(scriptId);
+
     if (existingScript) {
       existingScript.remove();
     }
 
     const script = document.createElement("script");
+    script.id = scriptId;
     script.type = "application/ld+json";
     script.textContent = JSON.stringify(structuredData);
     document.head.appendChild(script);
 
     // Cleanup function
     return () => {
-      if (existingScript) {
-        document.head.removeChild(script);
+      const scriptToRemove = document.getElementById(scriptId);
+      if (scriptToRemove && scriptToRemove.parentNode) {
+        scriptToRemove.remove();
       }
     };
   }, [title, metaDescription, keywords, canonicalUrl, structuredData]);
