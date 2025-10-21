@@ -86,8 +86,6 @@ function Projects({ showSection = false }) {
             {/* Desktop view */}
             <div
               className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8 lg:gap-y-16 w-full"
-              role="list"
-              aria-label="Projects list"
               aria-labelledby="projects-heading"
               tabIndex="0"
             >
